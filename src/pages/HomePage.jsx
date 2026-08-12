@@ -60,7 +60,9 @@ export default function HomePage({
                 color: 'var(--cdif-text-heading)',
                 marginBottom: '1.5rem',
               }}>
-                Strengthening Families. Nurturing Children. <span style={{ color: 'var(--cdif-primary)' }}>Building Resilient Communities.</span>
+                <span style={{ display: 'block' }}>Strengthening Families.</span>
+                <span style={{ display: 'block' }}>Nurturing Children.</span>
+                <span style={{ color: 'var(--cdif-primary)', display: 'block' }}>Building Resilient<br />Communities.</span>
               </h1>
 
               <p className="body-editorial-large hero-paragraph" style={{
