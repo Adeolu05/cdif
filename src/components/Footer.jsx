@@ -118,7 +118,7 @@ export default function Footer({ onOpenPartner, onOpenVolunteer }) {
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <Link to="/transparency" className="footer-policy-link">Child Safeguarding Policy</Link>
             <Link to="/transparency" className="footer-policy-link">Financial Accountability</Link>
-            <Link to="/placeholder" className="footer-policy-link">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="footer-policy-link">Privacy Policy</Link>
           </div>
         </div>
 
