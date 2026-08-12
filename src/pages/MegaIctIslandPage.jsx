@@ -86,34 +86,22 @@ export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, o
       {/* Programme Highlights */}
       <section className="editorial-section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem' }} className="highlights-grid">
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <h2 className="display-1" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>The Curriculum</h2>
+            <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)', marginBottom: '3.5rem', textAlign: 'center' }}>
+              Our intensive curriculum is designed to take students with zero prior computer experience and turn them into digitally literate individuals capable of navigating modern tech environments.
+            </p>
             
-            <div>
-              <h2 className="display-1" style={{ marginBottom: '1.5rem' }}>The Curriculum</h2>
-              <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)', marginBottom: '2.5rem' }}>
-                Our intensive curriculum is designed to take students with zero prior computer experience and turn them into digitally literate individuals capable of navigating modern tech environments.
-              </p>
-              
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {megaIctIslandData.highlights.map((highlight, idx) => (
-                  <li key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <CheckCircle size={24} color="var(--cdif-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <span style={{ fontSize: '1.1rem', color: 'var(--cdif-text-heading)', fontWeight: 600, lineHeight: 1.5 }}>
-                      {highlight}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <img 
-                src="/assets/media/photo_5_2026-08-10_14-01-14.jpg" 
-                alt="Students learning in ICT Bootcamp"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '400px' }}
-              />
-            </div>
-
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              {megaIctIslandData.highlights.map((highlight, idx) => (
+                <li key={idx} style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start', backgroundColor: '#fff', padding: '2rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-subtle)' }}>
+                  <CheckCircle size={28} color="var(--cdif-primary)" style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: '1.15rem', color: 'var(--cdif-text-heading)', fontWeight: 600, lineHeight: 1.5 }}>
+                    {highlight}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -124,15 +112,6 @@ export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, o
         onOpenPartner={onOpenPartner}
         onOpenDonate={onOpenDonate}
       />
-
-      <style>{`
-        @media (min-width: 992px) {
-          .highlights-grid {
-            grid-template-columns: 1fr 1fr !important;
-            align-items: center;
-          }
-        }
-      `}</style>
     </div>
   );
 }
