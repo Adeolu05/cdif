@@ -1,0 +1,345 @@
+/* ==========================================================================
+   CDIF Website 2.0 - Editorial Design System & Brand Source of Truth
+   Concept: "Dignified Empowerment" - Human-Centered Non-Profit Design
+   ========================================================================== */
+
+:root {
+  /* Official Brand Palette (Restrained Usage) */
+  --cdif-primary: #6A1B6E;        /* Deep Royal Purple */
+  --cdif-primary-dark: #4A0E4F;   /* Regal Plum */
+  --cdif-primary-light: #F3E5F5;  /* Soft Lavender Wash */
+  
+  --cdif-accent-gold: #F5B800;    /* Warm Radiant Gold */
+  --cdif-accent-gold-dark: #D49B00;
+  --cdif-accent-gold-light: #FFF8E7;
+
+  --cdif-ruby: #C81D25;           /* Crimson Red Subtext */
+  --cdif-ruby-light: #FDE8E9;
+
+  /* Surfaces & Canvas Backgrounds */
+  --cdif-bg-paper: #FAF6FC;       /* Warm Soft Lavender White Canvas */
+  --cdif-bg-surface: #FFFFFF;     /* Pure White Surface */
+  --cdif-bg-midnight: #1C0B25;    /* Deep Charcoal Violet for Immersive Sections */
+  --cdif-bg-subtle: #F3EAF8;      /* Light Muted Tint */
+
+  /* Editorial Typography Colors */
+  --cdif-text-heading: #1C0B25;   /* Royal Midnight Headline */
+  --cdif-text-body: #3C2B47;      /* High Legibility Dark Slate Body Text */
+  --cdif-text-muted: #746182;     /* Muted Subtitle Gray */
+  --cdif-text-on-dark: #FFFFFF;
+  --cdif-text-muted-on-dark: rgba(255, 255, 255, 0.78);
+
+  /* Hairlines & Borders */
+  --cdif-hairline: rgba(106, 27, 110, 0.12);
+  --cdif-hairline-strong: rgba(106, 27, 110, 0.25);
+  --cdif-hairline-dark: rgba(255, 255, 255, 0.15);
+
+  /* Typography Families */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radii Scale (Controlled, Refined, Non-Excessive) */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Subtle Shadows & Elevation (No Heavy AI Blobs) */
+  --shadow-subtle: 0 4px 20px rgba(28, 11, 37, 0.05);
+  --shadow-medium: 0 12px 35px rgba(28, 11, 37, 0.09);
+  --shadow-cinematic: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+  /* Micro-Transitions */
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--cdif-text-body);
+  background-color: var(--cdif-bg-paper);
+  line-height: 1.68;
+  overflow-x: hidden;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--cdif-text-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.display-1 {
+  font-size: 3rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.display-2 {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.display-3 {
+  font-size: 1.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+@media (min-width: 768px) {
+  .display-1 { font-size: 4rem; }
+  .display-2 { font-size: 3.2rem; }
+  .display-3 { font-size: 2.2rem; }
+}
+
+@media (min-width: 1024px) {
+  .display-1 { font-size: 5.2rem; }
+  .display-2 { font-size: 3.8rem; }
+  .display-3 { font-size: 2.6rem; }
+}
+
+@media (min-width: 1366px) and (max-height: 800px) {
+  .display-1 { 
+    font-size: 3.5rem !important; 
+  }
+  .display-2 { 
+    font-size: 3rem !important; 
+  }
+}
+
+.body-editorial {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--cdif-text-body);
+}
+.body-editorial-large {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--cdif-text-body);
+}
+
+@media (min-width: 1366px) and (max-height: 800px) {
+  .body-editorial-large {
+    font-size: 1.05rem !important;
+  }
+}
+
+.pull-quote {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--cdif-primary);
+  border-left: 4px solid var(--cdif-accent-gold);
+  padding-left: 1.5rem;
+  line-height: 1.3;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+}
+
+/* Editorial Section Spacing (Generous Whitespace, matching Hero) */
+.editorial-section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .editorial-section {
+    padding: 8.5rem 0;
+  }
+}
+
+/* Hairline Dividers */
+.hairline-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--cdif-hairline);
+  margin: 3.5rem 0;
+}
+
+.hairline-divider-dark {
+  width: 100%;
+  height: 1px;
+  background-color: var(--cdif-hairline-dark);
+  margin: 3.5rem 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: var(--transition-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled, .btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-editorial-primary {
+  background-color: var(--cdif-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(106, 27, 110, 0.25);
+}
+
+.btn-editorial-primary:hover:not(:disabled) {
+  background-color: var(--cdif-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(106, 27, 110, 0.38);
+}
+
+.btn-editorial-gold {
+  background-color: var(--cdif-accent-gold);
+  color: var(--cdif-bg-midnight);
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(245, 184, 0, 0.3);
+}
+
+.btn-editorial-gold:hover:not(:disabled) {
+  background-color: var(--cdif-accent-gold-dark);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-editorial-outline {
+  background-color: transparent;
+  color: var(--cdif-text-heading);
+  border: 1.5px solid var(--cdif-hairline-strong);
+}
+
+.btn-editorial-outline:hover:not(:disabled) {
+  border-color: var(--cdif-primary);
+  background-color: var(--cdif-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-editorial-outline-white {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-editorial-outline-white:hover:not(:disabled) {
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: var(--cdif-bg-midnight);
+  transform: translateY(-2px);
+}
+
+/* Reusable Icon Alignment Class */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Badges & Eyebrows */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cdif-primary);
+  margin-bottom: 0.8rem;
+}
+
+.eyebrow-gold {
+  color: var(--cdif-accent-gold);
+}
+
+.eyebrow-dark {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Accessibility Focus Ring */
+*:focus-visible {
+  outline: 2px solid var(--cdif-accent-gold);
+  outline-offset: 4px;
+}
+
+/* Image Aspect Ratio Containers */
+.img-editorial {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid var(--cdif-hairline);
+  position: relative;
+}
+
+.img-editorial img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-editorial:hover img {
+  transform: scale(1.03);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
