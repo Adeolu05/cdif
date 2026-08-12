@@ -167,14 +167,27 @@ export default function Footer({ onOpenPartner, onOpenVolunteer }) {
           <div>
             © {new Date().getFullYear()} {orgDetails.name}. All rights reserved. Registered NGO CAC/IT/8601968.
           </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <span>Child Safeguarding Policy</span>
-            <span>Financial Accountability</span>
-            <span>Privacy Policy</span>
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <Link to="/transparency" className="footer-policy-link">Child Safeguarding Policy</Link>
+            <Link to="/transparency" className="footer-policy-link">Financial Accountability</Link>
+            <Link to="/placeholder" className="footer-policy-link">Privacy Policy</Link>
           </div>
         </div>
 
       </div>
+
+      <style>{`
+        .footer-policy-link {
+          color: rgba(255,255,255,0.6);
+          text-decoration: none;
+          transition: var(--transition-fast);
+        }
+        .footer-policy-link:hover {
+          color: var(--cdif-accent-gold);
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+      `}</style>
     </footer>
   );
 }
