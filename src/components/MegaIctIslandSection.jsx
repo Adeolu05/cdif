@@ -1,6 +1,6 @@
 import React from 'react';
 import { Play } from 'lucide-react';
-import { fieldMedia } from '../data/cdifData';
+import { fieldMedia, megaIctIslandData } from '../data/cdifData';
 
 export default function MegaIctIslandSection({ onOpenVideoModal }) {
   return (
@@ -19,7 +19,7 @@ export default function MegaIctIslandSection({ onOpenVideoModal }) {
           </div>
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-              <img src={fieldMedia.megaIctHero} alt="Mega ICT Island Training" style={{ width: '100%', display: 'block', aspectRatio: '4/3', objectFit: 'cover' }} />
+              <img src={megaIctIslandData.posterImage} alt="Mega ICT Island Training" style={{ width: '100%', display: 'block', aspectRatio: '4/3', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.2)' }} />
               <button 
                 onClick={() => onOpenVideoModal && onOpenVideoModal(fieldMedia.megaIctVideo)}

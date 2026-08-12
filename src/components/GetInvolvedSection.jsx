@@ -3,7 +3,7 @@ import { ArrowRight, Handshake, Heart, UserPlus } from 'lucide-react';
 
 export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOpenPartner }) {
   return (
-    <section id="get-involved" className="section-padding" style={{ backgroundColor: 'var(--cdif-bg-subtle)' }}>
+    <section id="get-involved" className="editorial-section" style={{ backgroundColor: 'var(--cdif-bg-subtle)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '700px', margin: '0 auto 4rem auto' }}>
           <h2 className="display-1" style={{ color: 'var(--cdif-text-heading)' }}>Join the Living Story</h2>
@@ -12,7 +12,7 @@ export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOp
           </p>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div className="get-involved-grid">
           {/* Volunteer */}
           <div style={{ backgroundColor: '#fff', padding: '3rem 2rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-subtle)' }}>
             <div className="icon-container" style={{ backgroundColor: 'var(--cdif-primary-light)', color: 'var(--cdif-primary)', width: '56px', height: '56px', marginBottom: '1.5rem' }}>
@@ -50,6 +50,18 @@ export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOp
           </div>
         </div>
       </div>
+      <style>{`
+        .get-involved-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        @media (min-width: 768px) {
+          .get-involved-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 }
