@@ -1,33 +1,122 @@
 import React from 'react';
-import MegaIctIslandSection from '../components/MegaIctIslandSection';
 import GetInvolvedSection from '../components/GetInvolvedSection';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Play, CheckCircle } from 'lucide-react';
+import { megaIctIslandData } from '../data/cdifData';
 
 export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, onOpenPartner, onOpenDonate }) {
   return (
-    <div style={{ paddingTop: '2rem' }}>
-      {/* Header Banner */}
+    <div style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
+      {/* Cinematic Hero Section */}
       <section style={{
-        backgroundColor: 'var(--cdif-bg-midnight)',
-        color: '#FFFFFF',
-        padding: '4rem 0 4.5rem 0'
+        position: 'relative',
+        minHeight: '80vh',
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: '6rem',
+        paddingBottom: '6rem',
+        overflow: 'hidden'
       }}>
-        <div className="container">
-          <div className="eyebrow eyebrow-gold" style={{ marginBottom: '1rem' }}>
-            <Sparkles size={16} />
-            <span>Youth Empowerment Initiative</span>
+        {/* Background Image & Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0, left: 0, width: '100%', height: '100%',
+          zIndex: 0
+        }}>
+          <img 
+            src={megaIctIslandData.posterImage} 
+            alt="Mega ICT Island Bootcamp"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+          <div style={{
+            position: 'absolute',
+            top: 0, left: 0, width: '100%', height: '100%',
+            background: 'linear-gradient(to right, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.7) 100%)'
+          }} />
+        </div>
+
+        <div className="container" style={{ position: 'relative', zIndex: 1, color: '#FFFFFF' }}>
+          <div style={{ maxWidth: '800px' }}>
+            <div className="eyebrow eyebrow-gold" style={{ marginBottom: '1.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Sparkles size={16} /> Youth Empowerment Initiative
+            </div>
+            
+            <h1 className="display-1" style={{ color: '#FFFFFF', marginBottom: '1.5rem', fontSize: 'clamp(3rem, 6vw, 4.5rem)' }}>
+              {megaIctIslandData.hashtag}
+            </h1>
+            
+            <p className="body-editorial-large" style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '3rem', fontSize: '1.25rem' }}>
+              {megaIctIslandData.description}
+            </p>
+            
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center' }}>
+              <button 
+                onClick={() => onOpenVideoModal(megaIctIslandData.videoSrc, megaIctIslandData.title)} 
+                className="btn btn-editorial-gold"
+                style={{ padding: '1rem 2.5rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}
+              >
+                <Play size={20} fill="currentColor" /> Watch Documentary
+              </button>
+              
+              <button onClick={onOpenDonate} className="btn btn-editorial-outline" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem', border: '1px solid rgba(255,255,255,0.3)', color: '#fff' }}>
+                Sponsor a Teenager
+              </button>
+            </div>
           </div>
-          <h1 className="display-1" style={{ color: '#FFFFFF', marginBottom: '1.2rem' }}>
-            #MEGA ICT ISLAND
-          </h1>
-          <p className="body-editorial" style={{ color: 'rgba(255, 255, 255, 0.88)', maxWidth: '720px', fontSize: '1.15rem' }}>
-            Bridging the digital divide for underserved youth through practical computer literacy, coding fundamentals, and digital design training.
-          </p>
         </div>
       </section>
 
-      {/* Main #MEGA ICT ISLAND Component */}
-      <MegaIctIslandSection onOpenVideoModal={onOpenVideoModal} />
+      {/* Impact Stats Strip */}
+      <section style={{ backgroundColor: 'var(--cdif-accent-gold)', padding: '3rem 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+            {megaIctIslandData.stats.map((stat, idx) => (
+              <div key={idx} style={{ borderLeft: '2px solid rgba(0,0,0,0.1)', paddingLeft: '1.5rem' }}>
+                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--cdif-bg-midnight)', lineHeight: 1.2, marginBottom: '0.5rem' }}>
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(0,0,0,0.6)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Programme Highlights */}
+      <section className="editorial-section">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem' }} className="highlights-grid">
+            
+            <div>
+              <h2 className="display-1" style={{ marginBottom: '1.5rem' }}>The Curriculum</h2>
+              <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)', marginBottom: '2.5rem' }}>
+                Our intensive curriculum is designed to take students with zero prior computer experience and turn them into digitally literate individuals capable of navigating modern tech environments.
+              </p>
+              
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {megaIctIslandData.highlights.map((highlight, idx) => (
+                  <li key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                    <CheckCircle size={24} color="var(--cdif-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '1.1rem', color: 'var(--cdif-text-heading)', fontWeight: 600, lineHeight: 1.5 }}>
+                      {highlight}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              <img 
+                src="/assets/media/photo_5_2026-08-10_14-01-14.jpg" 
+                alt="Students learning in ICT Bootcamp"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '400px' }}
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* Call to Action */}
       <GetInvolvedSection 
@@ -35,6 +124,15 @@ export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, o
         onOpenPartner={onOpenPartner}
         onOpenDonate={onOpenDonate}
       />
+
+      <style>{`
+        @media (min-width: 992px) {
+          .highlights-grid {
+            grid-template-columns: 1fr 1fr !important;
+            align-items: center;
+          }
+        }
+      `}</style>
     </div>
   );
 }
