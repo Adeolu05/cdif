@@ -15,6 +15,7 @@ import TransparencyPage from './pages/TransparencyPage';
 import GetInvolvedPage from './pages/GetInvolvedPage';
 import ContactPage from './pages/ContactPage';
 import PlaceholderPage from './pages/PlaceholderPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 
 import { 
   VolunteerModal, 
@@ -91,16 +92,18 @@ export default function App() {
             {/* Programmes Routes */}
             <Route path="/programmes">
               <Route index element={<ProgrammesPage />} />
-              <Route path="mega-ict-island" element={
-                <MegaIctIslandPage 
-                  onOpenVideoModal={openVideoModal}
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
-                  onOpenPartner={() => setPartnerOpen(true)}
-                  onOpenDonate={() => setDonateOpen(true)}
-                />
-              } />
               <Route path=":id" element={<ProgrammeDetailPage />} />
             </Route>
+
+            {/* Mega ICT Island (Signature Initiative) */}
+            <Route path="/mega-ict-island" element={
+              <MegaIctIslandPage 
+                onOpenVideoModal={openVideoModal}
+                onOpenVolunteer={() => setVolunteerOpen(true)}
+                onOpenPartner={() => setPartnerOpen(true)}
+                onOpenDonate={() => setDonateOpen(true)}
+              />
+            } />
 
             {/* Impact & Stories Routes */}
             <Route path="/impact" element={<ImpactPage onOpenStoryModal={handleOpenStoryModal} />} />
@@ -139,6 +142,7 @@ export default function App() {
                 onOpenVolunteer={() => setVolunteerOpen(true)}
               />
             } />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           </Routes>
         </main>
 

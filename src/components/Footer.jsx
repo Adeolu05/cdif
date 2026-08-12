@@ -4,18 +4,6 @@ import { Mail, Phone, MapPin, Check } from 'lucide-react';
 import { orgDetails } from '../data/cdifData';
 
 export default function Footer({ onOpenPartner, onOpenVolunteer }) {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
-    }
-  };
-
   return (
     <footer style={{
       backgroundColor: 'var(--cdif-bg-midnight)',
@@ -107,47 +95,7 @@ export default function Footer({ onOpenPartner, onOpenVolunteer }) {
             </div>
           </div>
 
-          {/* Column 4: Newsletter */}
-          <div>
-            <h4 style={{ fontSize: '1rem', color: 'var(--cdif-accent-gold)', marginBottom: '1.4rem', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 800 }}>
-              Field Dispatch
-            </h4>
-            <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.78)', lineHeight: 1.55, marginBottom: '1.2rem' }}>
-              Subscribe to quarterly field reports, caregiver success stories, and verified impact statistics.
-            </p>
 
-            <form onSubmit={handleSubscribe} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <input 
-                type="email"
-                required
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                style={{
-                  padding: '0.8rem 1rem',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(255, 255, 255, 0.25)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  color: '#FFFFFF',
-                  fontSize: '0.88rem',
-                  outline: 'none'
-                }}
-              />
-              <button 
-                type="submit" 
-                className="btn btn-editorial-gold"
-                style={{ padding: '0.75rem 1rem', fontSize: '0.88rem', width: '100%' }}
-              >
-                {subscribed ? (
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center' }}>
-                    <Check size={16} /> Subscribed to Field Dispatch
-                  </span>
-                ) : (
-                  <span>Subscribe to Dispatch</span>
-                )}
-              </button>
-            </form>
-          </div>
 
         </div>
 
