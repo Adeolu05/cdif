@@ -137,20 +137,9 @@ export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, o
             <NavLink to="/programmes" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Programmes</NavLink>
             <NavLink to="/impact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Impact</NavLink>
             
-            <div style={{ position: 'relative' }} className="nav-more-dropdown">
-              <span className="nav-link" style={{ cursor: 'pointer', opacity: 0.7, paddingBottom: '1.5rem' }}>More</span>
-              <div className="dropdown-content" style={{
-                position: 'absolute', top: '100%', left: 0, marginTop: '0.5rem',
-                backgroundColor: 'var(--cdif-bg-surface)', padding: '1rem',
-                borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-medium)',
-                display: 'none', flexDirection: 'column', gap: '0.8rem', minWidth: '160px',
-                border: '1px solid var(--cdif-hairline)'
-              }}>
-                <NavLink to="/mega-ict-island" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>#MEGA ICT</NavLink>
-                <NavLink to="/get-involved" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Get Involved</NavLink>
-                <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Contact & FAQ</NavLink>
-              </div>
-            </div>
+            <NavLink to="/mega-ict-island" className={({ isActive }) => isActive ? 'nav-link active mega-link' : 'nav-link mega-link'}>#MEGA ICT</NavLink>
+            <NavLink to="/get-involved" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Get Involved</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Contact</NavLink>
           </nav>
 
           {/* Action Area (Right Aligned, Flex 1 on desktop) */}
@@ -275,17 +264,6 @@ export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, o
         .mega-link {
           color: var(--cdif-primary) !important;
           font-weight: 800 !important;
-        }
-        .nav-more-dropdown:hover .dropdown-content {
-          display: flex !important;
-        }
-        .nav-more-dropdown::after {
-          content: '';
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          height: 1rem;
         }
         @media (min-width: 768px) {
           .header-top-contacts { display: flex !important; }
