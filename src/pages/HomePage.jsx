@@ -362,7 +362,7 @@ export default function HomePage({
             <div style={{ position: 'relative' }}>
               <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
                 <img 
-                  src={fieldMedia.photos[3].src} 
+                  src={successStories[0].image} 
                   alt={successStories[0].caregiverName} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />

@@ -68,8 +68,7 @@ export default function ImpactPage({ onOpenStoryModal }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
             {successStories.map((story, idx) => {
               const isEven = idx % 2 === 0;
-              // Use appropriate field media depending on index for visual richness
-              const storyImage = isEven ? fieldMedia.photos[3].src : fieldMedia.photos[2].src;
+              const storyImage = story.image || (isEven ? fieldMedia.photos[0].src : fieldMedia.photos[1].src);
 
               return (
                 <div key={story.id} style={{

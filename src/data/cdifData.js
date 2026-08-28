@@ -139,6 +139,7 @@ export const fieldMedia = {
   featuredIctVideo: "/assets/media/mega_ict_island_day1.mp4",
   certificate: "/assets/media/photo_2_2026-08-10_14-01-14.jpg",
   photos: [
+    { src: "/assets/media/pos_empowerment_beneficiary.jpeg", alt: "CDIF Community Outreach & Beneficiary Empowerment Session", caption: "Caregiver POS & Livelihood Grant Outreach" },
     { src: "/assets/media/photo_1_2026-08-10_14-01-14.jpg", alt: "Elderly beneficiary with food support", caption: "Community Food Support Delivery" },
     { src: "/assets/media/photo_3_2026-08-10_14-01-14.jpg", alt: "Beneficiaries receiving assistance packages", caption: "Empowering Vulnerable Households" },
     { src: "/assets/media/photo_4_2026-08-10_14-01-14.jpg", alt: "Caregiver receiving sewing machine grant", caption: "Caregiver Economic Empowerment" },
@@ -158,14 +159,14 @@ export const fieldMedia = {
 
 export const successStories = [
   {
-    id: "story-grace",
-    caregiverName: "Mrs. Grace Adebayo",
-    role: "Mother of 3 & CDIF POS Business Grantee",
+    id: "story-pos-caregiver",
+    caregiverName: "Beneficiary Caregiver",
+    role: "Mother & CDIF POS Business Grantee",
     programme: "Caregiver Economic Empowerment",
-    quote: "Before CDIF stepped in, I struggled every week to pay my children's school fees. Receiving the POS business terminal and financial coaching transformed our lives. Now my retail business pays for their education and feeds our home with pride.",
-    fullStory: "Mrs. Grace lost her primary income source during economic downturns, leaving her family of five in severe instability. CDIF enrolled Grace into the Caregiver Economic Empowerment programme. After completing a 4-week business management module, she received a sponsored POS terminal and micro-starter capital. Within 6 months, Grace doubled her daily transaction revenue, allowing her children to return to school full-time.",
-    image: "/assets/images/caregiver_empowerment.png",
-    location: "Ikeja Community District"
+    quote: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
+    fullStory: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
+    image: "/assets/media/pos_empowerment_beneficiary.jpeg",
+    location: "Community Economic Empowerment Hub"
   },
   {
     id: "story-emmanuel",
@@ -174,7 +175,7 @@ export const successStories = [
     programme: "Youth Skills Development",
     quote: "The holiday ICT training opened a whole new world for me. I learned computer basics, digital design, and coding fundamentals. Today I mentor younger students and earn income designing graphics for local businesses.",
     fullStory: "Emmanuel was at risk of dropping out during long school holidays. CDIF sponsored his enrollment in the intensive 8-week Youth ICT Bootcamp. Demonstrating exceptional aptitude in digital media, Emmanuel received a sponsored refurbished laptop upon graduation and now assists CDIF's community tech workshop.",
-    image: "/assets/images/youth_ict.png",
+    image: "/assets/media/photo_5_2026-08-10_14-01-14.jpg",
     location: "Victoria Island Youth Hub"
   }
 ];
