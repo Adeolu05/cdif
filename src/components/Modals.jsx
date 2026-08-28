@@ -120,7 +120,7 @@ export function VolunteerModal({ isOpen, onClose }) {
         </div>
 
         <a 
-          href="mailto:volunteers@cdif.org?subject=Volunteer%20Application"
+          href={`mailto:${orgDetails.contact.volunteerEmail || orgDetails.contact.email}?subject=Volunteer%20Application`}
           className="btn btn-editorial-primary" 
           style={{ width: '100%', marginTop: '1rem' }}
         >
@@ -164,7 +164,7 @@ export function PartnerModal({ isOpen, onClose }) {
         </div>
 
         <a 
-          href="mailto:partnerships@cdif.org?subject=Corporate%20Partnership%20Inquiry"
+          href={`mailto:${orgDetails.contact.partnershipsEmail || orgDetails.contact.email}?subject=Corporate%20Partnership%20Inquiry`}
           className="btn btn-editorial-gold" 
           style={{ width: '100%', marginTop: '0.5rem' }}
         >

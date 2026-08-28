@@ -19,9 +19,9 @@ export const orgDetails = {
     address: "Community Impact Center, Plot 14 Family Resilience Way, Victoria Island / Ikeja Center",
     phone: "+234 (0) 803 123 4567",
     whatsapp: "[Awaiting Verified WhatsApp Number from CDIF]",
-    email: "info@cdif.org",
-    partnershipsEmail: "partnerships@cdif.org",
-    volunteerEmail: "volunteers@cdif.org",
+    email: "glocmemin@gmail.com",
+    partnershipsEmail: "glocmemin@gmail.com",
+    volunteerEmail: "glocmemin@gmail.com",
   },
   bankDetails: {
     accountName: "[Awaiting Verified Account Name from CDIF]",
