@@ -95,7 +95,7 @@ export default function ProgrammesPage() {
             
             <div style={{ position: 'relative' }}>
               <Link 
-                to="/programmes/mega-ict-island"
+                to="/mega-ict-island"
                 style={{
                   width: '100%',
                   aspectRatio: '16/9',
@@ -114,7 +114,7 @@ export default function ProgrammesPage() {
                   inset: 0,
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center',
+                  justifyContent: 'center',
                 }}>
                   <div style={{
                     width: '90px',
@@ -124,7 +124,7 @@ export default function ProgrammesPage() {
                     color: 'var(--cdif-bg-midnight)',
                     display: 'flex',
                     alignItems: 'center',
-                    justify: 'center',
+                    justifyContent: 'center',
                     transition: 'transform 0.3s ease'
                   }}>
                     <Play size={36} fill="currentColor" style={{ marginLeft: '6px' }} />
@@ -145,7 +145,7 @@ export default function ProgrammesPage() {
               </p>
               
               <Link 
-                to="/programmes/mega-ict-island"
+                to="/mega-ict-island"
                 className="btn btn-editorial-outline-white"
                 style={{ display: 'inline-flex', padding: '1rem 2rem', fontSize: '1rem', textDecoration: 'none' }}
               >

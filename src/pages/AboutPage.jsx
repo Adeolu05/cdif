@@ -30,8 +30,8 @@ export default function AboutPage() {
         <div className="container">
           <div style={{ width: '100%', aspectRatio: '21/9', overflow: 'hidden', borderRadius: 'var(--radius-md)' }}>
             <img 
-              src={fieldMedia.photos[4].src} 
-              alt="Community outreach" 
+              src={fieldMedia.communitySession.banner} 
+              alt="CDIF community session with organisation banner" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
@@ -55,7 +55,7 @@ export default function AboutPage() {
               </div>
               <div style={{ order: 2, position: 'relative' }}>
                 <div style={{ width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
-                  <img src={fieldMedia.photos[1].src} alt="Vision" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={fieldMedia.communitySession.audience} alt="Families gathered at a CDIF community meeting" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
               </div>
               <div style={{ order: 1, position: 'relative' }}>
                 <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                  <img src={fieldMedia.photos[0].src} alt="Mission" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={fieldMedia.communitySession.facilitator} alt="Facilitator leading a CDIF community session" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             </div>

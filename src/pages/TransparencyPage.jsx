@@ -2,11 +2,7 @@ import React from 'react';
 import { FileText, Download } from 'lucide-react';
 import { orgDetails, transparencyReports } from '../data/cdifData';
 
-export default function TransparencyPage() {
-  const openCertificate = () => {
-    const event = new CustomEvent('open-certificate');
-    window.dispatchEvent(event);
-  };
+export default function TransparencyPage({ onOpenCertificate }) {
 
   return (
     <div style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
@@ -67,13 +63,16 @@ export default function TransparencyPage() {
                 </div>
               </div>
 
-              <button 
-                onClick={openCertificate}
-                className="btn btn-editorial-outline"
-                style={{ padding: '0.8rem 1.5rem' }}
-              >
-                <FileText size={16} /> View CAC Certificate
-              </button>
+              {onOpenCertificate && (
+                <button 
+                  type="button"
+                  onClick={onOpenCertificate}
+                  className="btn btn-editorial-outline"
+                  style={{ padding: '0.8rem 1.5rem' }}
+                >
+                  <FileText size={16} /> View CAC Certificate
+                </button>
+              )}
             </div>
 
           </div>
@@ -97,15 +96,9 @@ export default function TransparencyPage() {
                 Board of Trustees
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {orgDetails.registration.trustees.split(' ').map((name, idx, arr) => {
-                  // Reconstruct full names safely if needed, or just list as is. The data has no commas.
-                  // For now, let's just display the string as a single entity or try to format it.
-                  if (idx % 2 === 0) return null; // Very hacky assumption on name structure, let's do this safely:
-                  return null;
-                })}
-                <li style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>Oluwayomi Adeosun</li>
-                <li style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>Adebisi Lawson</li>
-                <li style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>Olayinka Lawson</li>
+                {orgDetails.registration.trustees.map((name) => (
+                  <li key={name} style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>{name}</li>
+                ))}
               </ul>
             </div>
 
@@ -121,7 +114,7 @@ export default function TransparencyPage() {
             <div>
               <h2 className="display-1" style={{ marginBottom: '1.5rem', color: '#FFFFFF' }}>Financial Reports</h2>
               <p className="body-editorial" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                We believe our partners and donors deserve full visibility into how funds are utilized. Over 84% of all resources go directly towards community programmes.
+                Audit PDFs will be listed here with a working download once CDIF publishes them. Titles below are reserved for those releases.
               </p>
             </div>
 
@@ -143,13 +136,19 @@ export default function TransparencyPage() {
                     <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>
                       {report.title}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginTop: '0.3rem' }}>
-                      PDF • {report.size}
-                    </div>
+                    {report.size && (
+                      <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginTop: '0.3rem' }}>
+                        PDF • {report.size}
+                      </div>
+                    )}
                   </div>
-                  <button style={{ background: 'none', border: 'none', color: '#FFFFFF', cursor: 'pointer' }}>
-                    <Download size={24} />
-                  </button>
+                  {report.href ? (
+                    <a href={report.href} download style={{ color: '#FFFFFF' }} aria-label={`Download ${report.title}`}>
+                      <Download size={24} />
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)' }}>Awaiting file</span>
+                  )}
                 </div>
               ))}
             </div>

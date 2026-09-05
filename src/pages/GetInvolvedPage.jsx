@@ -39,7 +39,7 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
                 </div>
                 <h2 className="display-1" style={{ marginBottom: '1.5rem' }}>Support Financially</h2>
                 <p className="body-editorial" style={{ marginBottom: '2rem', color: 'var(--cdif-text-body)' }}>
-                  Your donation directly funds our quarterly food drives, educational school kits, and micro-business equipment for vulnerable caregivers. Every contribution is tracked and audited.
+                  Your gift funds food drives, school kits, and livelihood tools. Email us for verified transfer details until the public account is published.
                 </p>
                 <button onClick={onOpenDonate} className="btn btn-editorial-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
                   Make a Donation
@@ -88,7 +88,7 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
                 </button>
               </div>
               <div style={{ order: 1, width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
-                <img src={fieldMedia.photos[5].src} alt="Volunteer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={fieldMedia.communitySession.audience} alt="Community members at a CDIF session" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </div>
 

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,8 +14,8 @@ import ImpactPage from './pages/ImpactPage';
 import TransparencyPage from './pages/TransparencyPage';
 import GetInvolvedPage from './pages/GetInvolvedPage';
 import ContactPage from './pages/ContactPage';
-import PlaceholderPage from './pages/PlaceholderPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import { 
   VolunteerModal, 
@@ -25,6 +25,7 @@ import {
   SearchOverlay,
   CertificateViewerModal
 } from './components/Modals';
+import { fieldMedia, megaIctIslandData } from './data/cdifData';
 
 export default function App() {
   const [volunteerOpen, setVolunteerOpen] = useState(false);
@@ -34,33 +35,23 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [certOpen, setCertOpen] = useState(false);
 
-  useEffect(() => {
-    const handleOpenCert = () => setCertOpen(true);
-    window.addEventListener('open-certificate', handleOpenCert);
-    return () => window.removeEventListener('open-certificate', handleOpenCert);
-  }, []);
-
   const openVideoModal = (src, title) => {
     setVideoState({
       open: true,
-      src: src || '/assets/media/mega_ict_island_day1.mp4',
-      title: title || 'DAY 1 ICT TRAINING SECTION (#MEGA ICT ISLAND)'
+      src: src || megaIctIslandData.videoSrc,
+      title: title || megaIctIslandData.title
     });
   };
 
   const handleOpenStoryModal = (story) => {
-    openVideoModal(
-      '/assets/media/mega_ict_island_day1.mp4', 
-      `Documentary Spotlight: ${story.caregiverName} (${story.programme})`
-    );
+    if (!story?.videoSrc) return;
+    openVideoModal(story.videoSrc, `${story.caregiverName} (${story.programme})`);
   };
 
   return (
     <Router>
       <ScrollToTop />
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        
-        {/* Navigation Bar */}
         <Header 
           onOpenDonate={() => setDonateOpen(true)}
           onOpenVolunteer={() => setVolunteerOpen(true)}
@@ -68,7 +59,6 @@ export default function App() {
           onOpenSearch={() => setSearchOpen(true)}
         />
 
-        {/* Dynamic Route Content */}
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={
@@ -77,25 +67,12 @@ export default function App() {
                 onOpenVolunteer={() => setVolunteerOpen(true)}
                 onOpenPartner={() => setPartnerOpen(true)}
                 onOpenVideoModal={openVideoModal}
-                onOpenStoryModal={handleOpenStoryModal}
+                onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined}
               />
             } />
-
-            {/* About Routes */}
-            <Route path="/about">
-              <Route index element={<AboutPage />} />
-              <Route path="story" element={<PlaceholderPage title="Our Story" />} />
-              <Route path="mission" element={<PlaceholderPage title="Mission & Vision" />} />
-              <Route path="leadership" element={<PlaceholderPage title="Leadership" />} />
-            </Route>
-
-            {/* Programmes Routes */}
-            <Route path="/programmes">
-              <Route index element={<ProgrammesPage />} />
-              <Route path=":id" element={<ProgrammeDetailPage />} />
-            </Route>
-
-            {/* Mega ICT Island (Signature Initiative) */}
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/programmes" element={<ProgrammesPage />} />
+            <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
             <Route path="/mega-ict-island" element={
               <MegaIctIslandPage 
                 onOpenVideoModal={openVideoModal}
@@ -104,38 +81,17 @@ export default function App() {
                 onOpenDonate={() => setDonateOpen(true)}
               />
             } />
-
-            {/* Impact & Stories Routes */}
             <Route path="/impact" element={<ImpactPage onOpenStoryModal={handleOpenStoryModal} />} />
-            <Route path="/stories" element={<PlaceholderPage title="Documentary Stories" />} />
-            <Route path="/gallery" element={<PlaceholderPage title="Visual Gallery" />} />
-
-            {/* Transparency Routes */}
-            <Route path="/transparency">
-              <Route index element={<TransparencyPage />} />
-              <Route path="governance" element={<PlaceholderPage title="Governance Structure" />} />
-              <Route path="registration" element={<PlaceholderPage title="Registration & Legal" />} />
-              <Route path="reports" element={<PlaceholderPage title="Financial & Audit Reports" />} />
-            </Route>
-            
-            {/* News Routes */}
-            <Route path="/news" element={<PlaceholderPage title="News & Updates" />} />
-
-            {/* Get Involved Routes */}
-            <Route path="/get-involved">
-              <Route index element={
-                <GetInvolvedPage 
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
-                  onOpenPartner={() => setPartnerOpen(true)}
-                  onOpenDonate={() => setDonateOpen(true)}
-                />
-              } />
-              <Route path="volunteer" element={<PlaceholderPage title="Volunteer Application" />} />
-              <Route path="partner" element={<PlaceholderPage title="Corporate Partnerships" />} />
-            </Route>
-
-            <Route path="/support" element={<PlaceholderPage title="Support CDIF" />} />
-            
+            <Route path="/transparency" element={
+              <TransparencyPage onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined} />
+            } />
+            <Route path="/get-involved" element={
+              <GetInvolvedPage 
+                onOpenVolunteer={() => setVolunteerOpen(true)}
+                onOpenPartner={() => setPartnerOpen(true)}
+                onOpenDonate={() => setDonateOpen(true)}
+              />
+            } />
             <Route path="/contact" element={
               <ContactPage 
                 onOpenPartner={() => setPartnerOpen(true)}
@@ -143,16 +99,12 @@ export default function App() {
               />
             } />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 
-        {/* Global Footer */}
-        <Footer 
-          onOpenPartner={() => setPartnerOpen(true)}
-          onOpenVolunteer={() => setVolunteerOpen(true)}
-        />
+        <Footer />
 
-        {/* Interactive Overlay Modals */}
         <VolunteerModal isOpen={volunteerOpen} onClose={() => setVolunteerOpen(false)} />
         <PartnerModal isOpen={partnerOpen} onClose={() => setPartnerOpen(false)} />
         <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
@@ -164,7 +116,6 @@ export default function App() {
         />
         <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
         <CertificateViewerModal isOpen={certOpen} onClose={() => setCertOpen(false)} />
-
       </div>
     </Router>
   );

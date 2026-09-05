@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Check } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { orgDetails } from '../data/cdifData';
 
-export default function Footer({ onOpenPartner, onOpenVolunteer }) {
+export default function Footer() {
   return (
     <footer style={{
       backgroundColor: 'var(--cdif-bg-midnight)',
@@ -80,14 +80,18 @@ export default function Footer({ onOpenPartner, onOpenVolunteer }) {
               Field Operations
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.85)' }}>
-              <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                <MapPin size={16} color="var(--cdif-accent-gold)" style={{ flexShrink: 0, marginTop: '3px' }} />
-                <span style={{ lineHeight: 1.5 }}>{orgDetails.contact.address}</span>
-              </div>
-              <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center' }}>
-                <Phone size={16} color="var(--cdif-accent-gold)" style={{ flexShrink: 0 }} />
-                <a href={`tel:${orgDetails.contact.phone}`} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{orgDetails.contact.phone}</a>
-              </div>
+              {orgDetails.contact.address && (
+                <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
+                  <MapPin size={16} color="var(--cdif-accent-gold)" style={{ flexShrink: 0, marginTop: '3px' }} />
+                  <span style={{ lineHeight: 1.5 }}>{orgDetails.contact.address}</span>
+                </div>
+              )}
+              {orgDetails.contact.phone && (
+                <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center' }}>
+                  <Phone size={16} color="var(--cdif-accent-gold)" style={{ flexShrink: 0 }} />
+                  <a href={`tel:${orgDetails.contact.phone}`} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{orgDetails.contact.phone}</a>
+                </div>
+              )}
               <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center' }}>
                 <Mail size={16} color="var(--cdif-accent-gold)" style={{ flexShrink: 0 }} />
                 <a href={`mailto:${orgDetails.contact.email}`} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{orgDetails.contact.email}</a>
@@ -105,7 +109,7 @@ export default function Footer({ onOpenPartner, onOpenVolunteer }) {
         {/* Bottom Copyright & Rights */}
         <div style={{
           display: 'flex',
-          justify: 'space-between',
+          justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',

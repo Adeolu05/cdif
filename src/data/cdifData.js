@@ -9,25 +9,26 @@ export const orgDetails = {
     tin: "33347166-0001",
     date: "4th July, 2025",
     body: "Corporate Affairs Commission (CAC), Federal Republic of Nigeria",
-    trustees: "Oluwayomi Adeosun Adebisi Lawson Olayinka Lawson",
+    trustees: ["Oluwayomi Adeosun", "Adebisi Lawson", "Olayinka Lawson"],
     fullText: "Registered Community-Based Non-Governmental Organization (CAC/IT/8601968)"
   },
   vision: "To strengthen families in order to build stronger communities where every child has the opportunity to reach their full potential.",
   mission: "To empower vulnerable families by building the capacity of caregivers through economic empowerment, education, social support, and skills development, enabling them to provide quality care and lasting opportunities for their children.",
   commitment: "Capacity Development Initiative for Families is committed to promoting family resilience, child well-being, and community development through sustainable interventions that restore hope, preserve dignity, and create pathways out of poverty. By investing in caregivers and children today, we are helping to build healthier families and stronger communities for generations to come.",
   contact: {
-    address: "Community Impact Center, Plot 14 Family Resilience Way, Victoria Island / Ikeja Center",
-    phone: "+234 (0) 803 123 4567",
-    whatsapp: "[Awaiting Verified WhatsApp Number from CDIF]",
+    address: "",
+    phone: "",
+    whatsapp: "",
     email: "info@cdif.org",
     partnershipsEmail: "partnerships@cdif.org",
     volunteerEmail: "volunteers@cdif.org",
   },
   bankDetails: {
-    accountName: "[Awaiting Verified Account Name from CDIF]",
-    accountNumber: "[Awaiting Verified Account Number from CDIF]",
-    bankName: "[Awaiting Verified Bank Name from CDIF]",
-    sortCode: "[Awaiting Sort Code/Swift if applicable]"
+    verified: false,
+    accountName: "",
+    accountNumber: "",
+    bankName: "",
+    sortCode: ""
   }
 };
 
@@ -55,10 +56,10 @@ export const impactMetrics = [
   },
   {
     id: "youth",
-    count: 850,
-    suffix: "+",
-    label: "Youth ICT & Vocational Graduates",
-    description: "Adolescents trained in tech skills, digital literacy, and practical trades."
+    count: 9,
+    suffix: "",
+    label: "Teenagers Sponsored This Holiday Cycle",
+    description: "Adolescents currently sponsored for ICT and vocational holiday training."
   }
 ];
 
@@ -137,7 +138,13 @@ export const megaIctIslandData = {
 export const fieldMedia = {
   brandPoster: "/assets/media/cdif_brand_poster.jpeg",
   featuredIctVideo: "/assets/media/mega_ict_island_day1.mp4",
-  certificate: "/assets/media/photo_2_2026-08-10_14-01-14.jpg",
+  certificate: "",
+  communitySession: {
+    facilitator: "/assets/media/community_session_facilitator.jpg",
+    banner: "/assets/media/community_session_banner.jpg",
+    audience: "/assets/media/community_session_audience.jpg",
+    video: "/assets/media/community_session.mp4"
+  },
   photos: [
     { src: "/assets/media/pos_empowerment_beneficiary.jpeg", alt: "CDIF Community Outreach & Beneficiary Empowerment Session", caption: "Caregiver POS & Livelihood Grant Outreach" },
     { src: "/assets/media/photo_1_2026-08-10_14-01-14.jpg", alt: "Elderly beneficiary with food support", caption: "Community Food Support Delivery" },
@@ -145,9 +152,13 @@ export const fieldMedia = {
     { src: "/assets/media/photo_4_2026-08-10_14-01-14.jpg", alt: "Caregiver receiving sewing machine grant", caption: "Caregiver Economic Empowerment" },
     { src: "/assets/media/photo_5_2026-08-10_14-01-14.jpg", alt: "Sponsored teenagers at training session", caption: "Youth Skills Development: ICT & Hairdressing" },
     { src: "/assets/media/photo_6_2026-08-10_14-01-14.jpg", alt: "Beneficiary with CDIF official banner", caption: "Quarterly Food and Educational Support" },
-    { src: "/assets/media/photo_7_2026-08-10_14-01-14.jpg", alt: "Community outreach and food distribution", caption: "Building Stronger Communities" }
+    { src: "/assets/media/photo_7_2026-08-10_14-01-14.jpg", alt: "Community outreach and food distribution", caption: "Building Stronger Communities" },
+    { src: "/assets/media/community_session_banner.jpg", alt: "CDIF community session under the organisation banner", caption: "Community Capacity Session" },
+    { src: "/assets/media/community_session_audience.jpg", alt: "Residents seated at a CDIF community meeting", caption: "Community Meeting Audience" },
+    { src: "/assets/media/community_session_facilitator.jpg", alt: "Facilitator addressing families at a CDIF outreach", caption: "Community Session Facilitation" }
   ],
   videos: [
+    { src: "/assets/media/community_session.mp4", title: "Community Capacity Session" },
     { src: "/assets/media/mega_ict_island_day1.mp4", title: "DAY 1 ICT TRAINING SECTION (#MEGA ICT ISLAND)" },
     { src: "/assets/media/video_2026-08-10_14-01-14.mp4", title: "Field Distribution 1" },
     { src: "/assets/media/video_2026-08-10_14-01-14 (2).mp4", title: "Community Action 2" },
@@ -166,6 +177,7 @@ export const successStories = [
     quote: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
     fullStory: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
     image: "/assets/media/pos_empowerment_beneficiary.jpeg",
+    videoSrc: "",
     location: "Community Economic Empowerment Hub"
   },
   {
@@ -176,7 +188,8 @@ export const successStories = [
     quote: "The holiday ICT training opened a whole new world for me. I learned computer basics, digital design, and coding fundamentals. Today I mentor younger students and earn income designing graphics for local businesses.",
     fullStory: "Emmanuel was at risk of dropping out during long school holidays. CDIF sponsored his enrollment in the intensive 8-week Youth ICT Bootcamp. Demonstrating exceptional aptitude in digital media, Emmanuel received a sponsored refurbished laptop upon graduation and now assists CDIF's community tech workshop.",
     image: "/assets/media/photo_5_2026-08-10_14-01-14.jpg",
-    location: "Victoria Island Youth Hub"
+    videoSrc: "/assets/media/mega_ict_island_day1.mp4",
+    location: "Youth ICT Training"
   }
 ];
 
@@ -184,13 +197,15 @@ export const transparencyReports = [
   {
     year: "2025",
     title: "Annual Impact & Financial Audit Report 2025",
-    size: "3.4 MB",
+    size: "",
+    href: "",
     allocation: { programmes: 84, administration: 11, fundraising: 5 }
   },
   {
     year: "2024",
     title: "Quarterly Field Evaluation & Beneficiary Outcomes 2024",
-    size: "2.8 MB",
+    size: "",
+    href: "",
     allocation: { programmes: 82, administration: 12, fundraising: 6 }
   }
 ];
@@ -224,7 +239,7 @@ export const faqs = [
   },
   {
     question: "How are funds allocated across programs?",
-    answer: "Over 84% of all resources directly fund caregiver equipment grants, school kits, food assistance packs, and youth vocational training. Detailed annual audited financial statements are publicly available on our website."
+    answer: "Programme delivery is the priority. Published audit PDFs will appear on the Transparency page once CDIF releases them."
   },
   {
     question: "Can corporate organizations partner with CDIF for CSR?",

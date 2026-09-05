@@ -6,7 +6,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section className="section-padding" style={{ backgroundColor: 'var(--cdif-bg-surface)' }}>
+    <section className="editorial-section" style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
       <div className="container" style={{ maxWidth: '800px' }}>
         <h2 className="display-3" style={{ textAlign: 'center', marginBottom: '3rem', color: 'var(--cdif-text-heading)' }}>
           Frequently Asked Questions
@@ -26,7 +26,9 @@ export default function FAQSection() {
                 }}
               >
                 <button 
+                  type="button"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  aria-expanded={isOpen}
                   style={{ 
                     width: '100%', 
                     padding: '1.5rem', 

@@ -30,9 +30,7 @@ export default function PrivacyPolicyPage() {
           <div style={{ maxWidth: '800px' }}>
             <h2 className="display-1" style={{ marginBottom: '1.5rem' }}>Our Commitment</h2>
             <p className="body-editorial" style={{ marginBottom: '2.5rem', color: 'var(--cdif-text-muted)' }}>
-              We are currently finalizing our comprehensive digital privacy policy to comply with data protection regulations. 
-              Rest assured that any data collected through this platform is used strictly for communication, processing donations, 
-              and facilitating volunteer applications. We do not sell or distribute personal information to third parties.
+              A full privacy policy is still being written. This site does not collect form submissions. Email links open your own mail app. We do not sell personal information.
             </p>
             <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)' }}>
               For any urgent inquiries regarding data handling, please contact us directly.

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Heart, Search, Menu, X, Phone, Mail, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Heart, Search, Menu, X, Phone, Mail } from 'lucide-react';
 import { orgDetails } from '../data/cdifData';
 
 export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, onOpenSearch }) {
@@ -51,10 +51,12 @@ export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, o
           </div>
 
           <div style={{ display: 'none', alignItems: 'center', gap: '1.2rem' }} className="header-top-contacts">
-            <a href={`tel:${orgDetails.contact.phone}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', opacity: 0.88, color: '#fff', textDecoration: 'none' }}>
-              <Phone size={11} color="var(--cdif-accent-gold)" />
-              <span>{orgDetails.contact.phone}</span>
-            </a>
+            {orgDetails.contact.phone && (
+              <a href={`tel:${orgDetails.contact.phone}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', opacity: 0.88, color: '#fff', textDecoration: 'none' }}>
+                <Phone size={11} color="var(--cdif-accent-gold)" />
+                <span>{orgDetails.contact.phone}</span>
+              </a>
+            )}
             <a href={`mailto:${orgDetails.contact.email}`} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', opacity: 0.88, color: '#fff', textDecoration: 'none' }}>
               <Mail size={11} color="var(--cdif-accent-gold)" />
               <span>{orgDetails.contact.email}</span>

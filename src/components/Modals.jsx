@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, Check, Heart, ShieldCheck, Play, Search, Send, ArrowRight, UserPlus, Building, Sparkles, Copy, Mail, Handshake } from 'lucide-react';
-import { coreProgrammes, successStories, faqs, fieldMedia, orgDetails } from '../data/cdifData';
+import { Link } from 'react-router-dom';
+import { X, Check, Search, Send, Building, Copy, Mail, Handshake } from 'lucide-react';
+import { coreProgrammes, successStories, fieldMedia, orgDetails } from '../data/cdifData';
 
 /* Generic Base Modal Overlay */
 function ModalBase({ isOpen, onClose, title, children }) {
@@ -179,161 +180,101 @@ export function PartnerModal({ isOpen, onClose }) {
 /* 3. Donate / Direct Support Modal */
 export function DonateModal({ isOpen, onClose }) {
   const [copied, setCopied] = useState('');
+  const bank = orgDetails.bankDetails;
+  const bankLive = Boolean(bank.verified && bank.accountNumber);
 
-  const handleCopy = (text, type) => {
-    navigator.clipboard.writeText(text);
-    setCopied(type);
-    setTimeout(() => setCopied(''), 2000);
+  const handleCopy = async (text, type) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(type);
+      setTimeout(() => setCopied(''), 2000);
+    } catch {
+      setCopied('');
+    }
   };
 
   return (
     <ModalBase isOpen={isOpen} onClose={onClose} title="Support CDIF's Work">
       <div>
         <p style={{ fontSize: '1rem', color: 'var(--cdif-text-body)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-          Your donation directly funds our quarterly food drives, educational school kits, and micro-business equipment for vulnerable caregivers.
+          Your donation funds food drives, school kits, and livelihood tools for caregivers. Bank details appear here only after CDIF verifies them.
         </p>
 
-        <div style={{
-          padding: '1.2rem',
-          backgroundColor: 'var(--cdif-bg-subtle)',
-          borderRadius: 'var(--radius-md)',
-          marginBottom: '2rem',
-          borderLeft: '4px solid var(--cdif-primary)'
-        }}>
-          <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1.2rem' }}>
-            Direct Bank Transfer
-          </h4>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {/* Account Name */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {bankLive ? (
+          <div style={{
+            padding: '1.2rem',
+            backgroundColor: 'var(--cdif-bg-subtle)',
+            borderRadius: 'var(--radius-md)',
+            marginBottom: '2rem',
+            borderLeft: '4px solid var(--cdif-primary)'
+          }}>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1.2rem' }}>
+              Direct Bank Transfer
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Account Name</div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>
-                  {orgDetails.bankDetails.accountName}
-                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>{bank.accountName}</div>
               </div>
-            </div>
-
-            {/* Account Number */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Account Number</div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--cdif-primary)', letterSpacing: '1px' }}>
-                  {orgDetails.bankDetails.accountNumber}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Account Number</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--cdif-primary)', letterSpacing: '1px' }}>{bank.accountNumber}</div>
                 </div>
+                <button 
+                  type="button"
+                  onClick={() => handleCopy(bank.accountNumber, 'accountNumber')}
+                  className="btn btn-editorial-outline" 
+                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+                >
+                  {copied === 'accountNumber' ? <><Check size={14} /> Copied</> : <><Copy size={14} /> Copy</>}
+                </button>
               </div>
-              <button 
-                onClick={() => handleCopy(orgDetails.bankDetails.accountNumber, 'accountNumber')}
-                className="btn btn-editorial-outline" 
-                style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
-              >
-                {copied === 'accountNumber' ? <><Check size={14} /> Copied!</> : <><Copy size={14} /> Copy</>}
-              </button>
-            </div>
-
-            {/* Bank Name */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Bank</div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>
-                  {orgDetails.bankDetails.bankName}
-                </div>
-              </div>
-            </div>
-            
-            {/* Sort Code / Additional Info */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Sort Code / SWIFT</div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>
-                  {orgDetails.bankDetails.sortCode}
-                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--cdif-text-heading)' }}>{bank.bankName}</div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div style={{
+            padding: '1.2rem',
+            backgroundColor: 'var(--cdif-bg-subtle)',
+            borderRadius: 'var(--radius-md)',
+            marginBottom: '2rem',
+            borderLeft: '4px solid var(--cdif-accent-gold)'
+          }}>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '0.6rem' }}>
+              Transfer details coming next
+            </h4>
+            <p style={{ fontSize: '0.95rem', color: 'var(--cdif-text-body)', margin: 0 }}>
+              Email the partnerships desk and we will send verified account details.
+            </p>
+          </div>
+        )}
 
         <div style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '0.9rem', color: 'var(--cdif-text-muted)', marginBottom: '1rem' }}>
-            For donation enquiries or confirmation, contact CDIF:
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href={`mailto:${orgDetails.contact.email}`} className="btn btn-editorial-outline" style={{ fontSize: '0.85rem', padding: '0.6rem 1.2rem' }}>
-              Email Us
-            </a>
-            <a href={`tel:${orgDetails.contact.phone.replace(/[^0-9+]/g, '')}`} className="btn btn-editorial-outline" style={{ fontSize: '0.85rem', padding: '0.6rem 1.2rem' }}>
-              Call Us
-            </a>
-          </div>
+          <a href={`mailto:${orgDetails.contact.email}?subject=Donation%20enquiry`} className="btn btn-editorial-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 1.2rem' }}>
+            Email a donation enquiry
+          </a>
         </div>
       </div>
     </ModalBase>
   );
 }
 
-/* 4. Programme Detail Deep Dive Modal */
-export function ProgrammeDetailModal({ programme, onClose }) {
-  if (!programme) return null;
-
-  return (
-    <ModalBase isOpen={!!programme} onClose={onClose} title={programme.title}>
-      <div>
-        <div className="badge badge-primary" style={{ marginBottom: '1rem' }}>
-          {programme.category}
-        </div>
-
-        <p style={{ fontSize: '1.05rem', color: 'var(--cdif-text-body)', lineHeight: 1.7, marginBottom: '1.8rem' }}>
-          {programme.overview}
-        </p>
-
-        <h4 style={{ fontSize: '1.1rem', color: 'var(--cdif-text-heading)', marginBottom: '0.8rem' }}>
-          Key Deliverables & Execution Strategy:
-        </h4>
-
-        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2rem' }}>
-          {programme.highlights.map((h, i) => (
-            <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.95rem', color: 'var(--cdif-text-heading)' }}>
-              <Check size={18} color="var(--cdif-primary)" />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div style={{
-          padding: '1.2rem',
-          borderRadius: 'var(--radius-md)',
-          backgroundColor: 'var(--cdif-text-heading)',
-          color: '#fff',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <div>
-            <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--cdif-accent-gold)', fontWeight: 700 }}>
-              Verified Outcome
-            </div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 800 }}>{programme.impactStat}</div>
-          </div>
-          <button onClick={onClose} className="btn btn-accent" style={{ fontSize: '0.85rem' }}>
-            Close Detail
-          </button>
-        </div>
-      </div>
-    </ModalBase>
-  );
-}
-
-/* 5. Video Field & Documentary Modal */
 export function VideoModal({ isOpen, onClose, videoSrc, videoTitle }) {
-  const activeVideo = videoSrc || "/assets/media/mega_ict_island_day1.mp4";
-  const activeTitle = videoTitle || "DAY 1 ICT TRAINING SECTION (#MEGA ICT ISLAND)";
+  if (!videoSrc) return (
+    <ModalBase isOpen={isOpen} onClose={onClose} title={videoTitle || 'Field video'}>
+      <p style={{ color: 'var(--cdif-text-muted)' }}>This clip is not available yet.</p>
+    </ModalBase>
+  );
 
   return (
-    <ModalBase isOpen={isOpen} onClose={onClose} title={activeTitle}>
+    <ModalBase isOpen={isOpen} onClose={onClose} title={videoTitle}>
       <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', backgroundColor: '#000', border: '2px solid rgba(245, 184, 0, 0.4)' }}>
         <video 
-          src={activeVideo}
+          src={videoSrc}
           controls
           autoPlay={isOpen}
           playsInline
@@ -341,25 +282,14 @@ export function VideoModal({ isOpen, onClose, videoSrc, videoTitle }) {
         >
           Your browser does not support the video tag.
         </video>
-        <div style={{
-          padding: '0.8rem 1rem',
-          backgroundColor: 'var(--cdif-text-heading)',
-          color: '#fff',
-          fontSize: '0.85rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <span style={{ color: 'var(--cdif-accent-gold)', fontWeight: 800 }}>#MEGA ICT ISLAND</span>
-          <span style={{ opacity: 0.85 }}>Sponsored by Capacity Development Initiative</span>
-        </div>
       </div>
     </ModalBase>
   );
 }
 
-/* 6. Certificate Viewer Modal */
 export function CertificateViewerModal({ isOpen, onClose }) {
+  if (!fieldMedia.certificate) return null;
+
   return (
     <ModalBase isOpen={isOpen} onClose={onClose} title="Certificate of Incorporation">
       <div style={{ backgroundColor: '#fff', borderRadius: 'var(--radius-md)', padding: '0.5rem', border: '1px solid var(--cdif-hairline-strong)' }}>
@@ -373,14 +303,14 @@ export function CertificateViewerModal({ isOpen, onClose }) {
   );
 }
 
-/* 6. Real-Time Search Overlay */
 export function SearchOverlay({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
 
   if (!isOpen) return null;
 
-  const filteredProgs = coreProgrammes.filter(p => p.title.toLowerCase().includes(query.toLowerCase()));
-  const filteredStories = successStories.filter(s => s.caregiverName.toLowerCase().includes(query.toLowerCase()));
+  const q = query.trim().toLowerCase();
+  const filteredProgs = coreProgrammes.filter(p => p.title.toLowerCase().includes(q) || p.subtitle.toLowerCase().includes(q));
+  const filteredStories = successStories.filter(s => s.caregiverName.toLowerCase().includes(q) || s.programme.toLowerCase().includes(q));
 
   return (
     <div style={{
@@ -399,7 +329,7 @@ export function SearchOverlay({ isOpen, onClose }) {
       alignItems: 'center'
     }}>
       <div style={{ width: '100%', maxWidth: '720px', display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem' }}>
-        <button onClick={onClose} style={{ color: '#fff', cursor: 'pointer' }}>
+        <button type="button" onClick={onClose} aria-label="Close search" style={{ color: '#fff', cursor: 'pointer', background: 'none', border: 'none' }}>
           <X size={32} />
         </button>
       </div>
@@ -417,7 +347,7 @@ export function SearchOverlay({ isOpen, onClose }) {
           <input 
             type="text"
             autoFocus
-            placeholder="Search programs, equipment loans, reports, or stories..."
+            placeholder="Search programmes or stories"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             style={{
@@ -431,17 +361,22 @@ export function SearchOverlay({ isOpen, onClose }) {
           />
         </div>
 
-        {query && (
+        {q && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxHeight: '60vh', overflowY: 'auto' }}>
             <div>
               <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--cdif-accent-gold)', marginBottom: '0.8rem', fontWeight: 700 }}>
                 Programmes ({filteredProgs.length})
               </div>
               {filteredProgs.map(p => (
-                <div key={p.id} style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem' }}>
+                <Link
+                  key={p.id}
+                  to={`/programmes/${p.id}`}
+                  onClick={onClose}
+                  style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem', display: 'block', color: '#fff', textDecoration: 'none' }}
+                >
                   <div style={{ fontWeight: 700 }}>{p.title}</div>
                   <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{p.subtitle}</div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -450,10 +385,15 @@ export function SearchOverlay({ isOpen, onClose }) {
                 Stories ({filteredStories.length})
               </div>
               {filteredStories.map(s => (
-                <div key={s.id} style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem' }}>
+                <Link
+                  key={s.id}
+                  to="/impact"
+                  onClick={onClose}
+                  style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem', display: 'block', color: '#fff', textDecoration: 'none' }}
+                >
                   <div style={{ fontWeight: 700 }}>{s.caregiverName}</div>
-                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{s.quote}</div>
-                </div>
+                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{s.programme}</div>
+                </Link>
               ))}
             </div>
           </div>

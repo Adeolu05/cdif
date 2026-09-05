@@ -1,11 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
   Play, 
-  Heart, 
-  Users, 
-  ArrowUpRight,
   FileText
 } from 'lucide-react';
 import { orgDetails, coreProgrammes, megaIctIslandData, fieldMedia, successStories } from '../data/cdifData';
@@ -15,8 +13,7 @@ export default function HomePage({
   onOpenVolunteer, 
   onOpenPartner, 
   onOpenVideoModal, 
-  onSelectProgramme,
-  onOpenStoryModal
+  onOpenCertificate
 }) {
   return (
     <div className="home-story-wrapper" style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
@@ -84,7 +81,7 @@ export default function HomePage({
                 </button>
 
                 <button 
-                  onClick={() => onOpenVideoModal('/assets/media/mega_ict_island_day1.mp4', 'DAY 1 ICT TRAINING SECTION (#MEGA ICT ISLAND)')} 
+                  onClick={() => onOpenVideoModal(fieldMedia.communitySession.video, 'Community Capacity Session')} 
                   className="btn btn-editorial-outline"
                   style={{ padding: '0.95rem 2rem', fontSize: '1rem', border: 'none', gap: '0.8rem' }}
                 >
@@ -108,8 +105,8 @@ export default function HomePage({
                 position: 'relative'
               }}>
                 <img 
-                  src={fieldMedia.photos[5].src} 
-                  alt="CDIF Empowered Family Community Outreach" 
+                  src={fieldMedia.communitySession.banner} 
+                  alt="CDIF community session under the organisation banner" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
@@ -189,14 +186,19 @@ export default function HomePage({
           }} className="editorial-two-col">
             
             <div style={{ position: 'relative' }}>
-              <div 
+              <button
+                type="button"
                 onClick={() => onOpenVideoModal(megaIctIslandData.videoSrc, megaIctIslandData.title)}
+                aria-label="Play Mega ICT Island field video"
                 style={{
                   width: '100%',
                   aspectRatio: '16/9',
                   overflow: 'hidden',
                   cursor: 'pointer',
-                  position: 'relative'
+                  position: 'relative',
+                  border: 'none',
+                  padding: 0,
+                  background: 'none'
                 }}
               >
                 <img 
@@ -209,7 +211,7 @@ export default function HomePage({
                   inset: 0,
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center',
+                  justifyContent: 'center',
                 }}>
                   <div style={{
                     width: '90px',
@@ -219,13 +221,13 @@ export default function HomePage({
                     color: 'var(--cdif-bg-midnight)',
                     display: 'flex',
                     alignItems: 'center',
-                    justify: 'center',
+                    justifyContent: 'center',
                     transition: 'transform 0.3s ease'
                   }}>
                     <Play size={36} fill="currentColor" style={{ marginLeft: '6px' }} />
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
 
             <div>
@@ -239,16 +241,17 @@ export default function HomePage({
                 {megaIctIslandData.description}
               </p>
               
-              <div style={{ display: 'flex', gap: '3rem', borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: '2rem' }}>
-                <div>
-                  <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--cdif-accent-gold)', lineHeight: 1 }}>9</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff', marginTop: '0.5rem' }}>Teenagers Sponsored</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: '3rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1 }}>4</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem' }}>Weeks Intensive Training</div>
-                </div>
+              <div style={{ display: 'flex', gap: '3rem', borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: '2rem', marginBottom: '2rem' }}>
+                {megaIctIslandData.stats.slice(0, 2).map((stat) => (
+                  <div key={stat.label}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--cdif-accent-gold)', lineHeight: 1.2 }}>{stat.value}</div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff', marginTop: '0.5rem' }}>{stat.label}</div>
+                  </div>
+                ))}
               </div>
+              <Link to="/mega-ict-island" className="btn btn-editorial-outline-white" style={{ textDecoration: 'none' }}>
+                Explore this Initiative
+              </Link>
             </div>
 
           </div>
@@ -295,16 +298,17 @@ export default function HomePage({
                       {prog.overview}
                     </p>
 
-                    <button 
-                      onClick={() => onSelectProgramme(prog)} 
+                    <Link 
+                      to={`/programmes/${prog.id}`}
                       style={{ 
                         background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-primary)', 
                         paddingBottom: '0.3rem', color: 'var(--cdif-primary)', fontWeight: 700, 
-                        fontSize: '1.05rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
+                        fontSize: '1.05rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                        textDecoration: 'none'
                       }}
                     >
                       Read Full Story <ArrowRight size={16} />
-                    </button>
+                    </Link>
                   </div>
 
                 </div>
@@ -347,16 +351,17 @@ export default function HomePage({
                 </div>
               </div>
 
-              <button 
-                onClick={() => onOpenStoryModal(successStories[0])}
+              <Link
+                to="/impact"
                 style={{ 
                   marginTop: '2.5rem', background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-text-heading)', 
                   paddingBottom: '0.3rem', color: 'var(--cdif-text-heading)', fontWeight: 700, 
-                  fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
+                  fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  textDecoration: 'none'
                 }}
               >
-                View Documentary Record <ArrowUpRight size={16} />
-              </button>
+                Read more field stories <ArrowRight size={16} />
+              </Link>
             </div>
 
             <div style={{ position: 'relative' }}>
@@ -393,19 +398,19 @@ export default function HomePage({
               <div style={{ fontSize: '1.05rem', color: 'var(--cdif-text-muted)', marginBottom: '1.5rem' }}>
                 TIN: {orgDetails.registration.tin} | Date: {orgDetails.registration.date}
               </div>
-              <button 
-                onClick={() => {
-                  const event = new CustomEvent('open-certificate');
-                  window.dispatchEvent(event);
-                }} 
-                style={{ 
-                  background: 'none', border: 'none', color: 'var(--cdif-primary)', fontWeight: 700, 
-                  fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  textDecoration: 'underline', textUnderlineOffset: '4px'
-                }}
-              >
-                <FileText size={16} /> View Official CAC Certificate
-              </button>
+              {fieldMedia.certificate && (
+                <button 
+                  type="button"
+                  onClick={onOpenCertificate}
+                  style={{ 
+                    background: 'none', border: 'none', color: 'var(--cdif-primary)', fontWeight: 700, 
+                    fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                    textDecoration: 'underline', textUnderlineOffset: '4px'
+                  }}
+                >
+                  <FileText size={16} /> View Official CAC Certificate
+                </button>
+              )}
             </div>
           </div>
         </div>

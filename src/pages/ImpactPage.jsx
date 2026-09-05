@@ -20,7 +20,7 @@ export default function ImpactPage({ onOpenStoryModal }) {
               <span style={{ color: 'var(--cdif-primary)' }}>Human Outcomes.</span>
             </h1>
             <p className="body-editorial-large" style={{ color: 'var(--cdif-text-muted)' }}>
-              Behind every statistic is a caregiver equipped to provide, and a child empowered to learn. This is our verified footprint across the communities we serve.
+              Behind every statistic is a caregiver equipped to provide, and a child empowered to learn. Holiday sponsorship counts are current. Broader totals are programme estimates pending a published audit.
             </p>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function ImpactPage({ onOpenStoryModal }) {
             gap: '4rem'
           }} className="impact-grid">
             
-            {impactMetrics.map((metric, idx) => (
+            {impactMetrics.map((metric) => (
               <div key={metric.id} style={{
                 borderTop: '1px solid rgba(255, 255, 255, 0.2)',
                 paddingTop: '2rem'
@@ -106,16 +106,19 @@ export default function ImpactPage({ onOpenStoryModal }) {
                       </div>
                     </div>
 
-                    <button 
-                      onClick={() => onOpenStoryModal(story)}
-                      style={{ 
-                        marginTop: '2.5rem', background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-text-heading)', 
-                        paddingBottom: '0.3rem', color: 'var(--cdif-text-heading)', fontWeight: 700, 
-                        fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
-                      }}
-                    >
-                      View Documentary Record <ArrowUpRight size={16} />
-                    </button>
+                    {story.videoSrc && (
+                      <button 
+                        type="button"
+                        onClick={() => onOpenStoryModal(story)}
+                        style={{ 
+                          marginTop: '2.5rem', background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-text-heading)', 
+                          paddingBottom: '0.3rem', color: 'var(--cdif-text-heading)', fontWeight: 700, 
+                          fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
+                        }}
+                      >
+                        Watch field video <ArrowUpRight size={16} />
+                      </button>
+                    )}
                   </div>
 
                 </div>
