@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import usePageMeta from '../hooks/usePageMeta';
 
 export default function NotFoundPage() {
+  usePageMeta('Page not found', 'This page is not on the CDIF website.');
+
   return (
     <div className="editorial-section" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
       <div className="container" style={{ textAlign: 'center', maxWidth: '640px' }}>
-        <div className="eyebrow eyebrow-gold">Page not found</div>
+        <div className="eyebrow eyebrow-accent">Page not found</div>
         <h1 className="display-1" style={{ marginBottom: '1.5rem' }}>
           This path is not on the site.
         </h1>

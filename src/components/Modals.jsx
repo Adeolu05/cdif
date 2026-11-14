@@ -1,48 +1,49 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, Check, Search, Send, Building, Copy, Mail, Handshake } from 'lucide-react';
 import { coreProgrammes, successStories, fieldMedia, orgDetails } from '../data/cdifData';
+import useDialog from '../hooks/useDialog';
 
 /* Generic Base Modal Overlay */
 function ModalBase({ isOpen, onClose, title, children }) {
+  const dialogRef = useDialog(isOpen, onClose);
+  const titleId = useId();
+
   if (!isOpen) return null;
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(14, 36, 31, 0.85)', /* Darker for more contrast */
-      backdropFilter: 'blur(12px)', /* Stronger blur */
-      zIndex: 2000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '1.5rem',
-      animation: 'fadeIn 0.2s ease-out'
-    }}>
-      <div style={{
-        backgroundColor: 'var(--cdif-bg-surface)',
-        borderRadius: 'var(--radius-lg)',
-        maxWidth: '620px',
-        width: '100%',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)', /* Deeper shadow for focus */
-        position: 'relative',
-        padding: '3rem 2.5rem' /* More spacious padding */
-      }}>
-        {/* Close Button */}
+    <div
+      onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'var(--cdif-overlay)',
+        backdropFilter: 'blur(12px)',
+        zIndex: 2000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1rem',
+        animation: 'fadeIn 0.2s ease-out'
+      }}
+    >
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
+        tabIndex={-1}
+        className="modal-panel"
+      >
         <button 
+          type="button"
           onClick={onClose}
-          aria-label="Close modal"
+          aria-label="Close"
           className="icon-container"
           style={{
             position: 'absolute',
-            top: '1.5rem',
-            right: '1.5rem',
+            top: '1.25rem',
+            right: '1.25rem',
             width: '40px',
             height: '40px',
             borderRadius: '50%',
@@ -50,16 +51,15 @@ function ModalBase({ isOpen, onClose, title, children }) {
             color: 'var(--cdif-text-heading)',
             cursor: 'pointer',
             border: 'none',
-            outline: 'none',
             transition: 'var(--transition-fast)'
           }}
         >
-          <X size={24} />
+          <X size={22} aria-hidden="true" />
         </button>
 
         {title && (
-          <h3 style={{
-            fontSize: '1.8rem', /* Larger title */
+          <h2 id={titleId} style={{
+            fontSize: '1.65rem',
             color: 'var(--cdif-text-heading)',
             marginBottom: '1.5rem',
             paddingRight: '3rem',
@@ -67,11 +67,28 @@ function ModalBase({ isOpen, onClose, title, children }) {
             fontWeight: 800
           }}>
             {title}
-          </h3>
+          </h2>
         )}
 
         {children}
       </div>
+      <style>{`
+        .modal-panel {
+          position: relative;
+          width: 100%;
+          max-width: 620px;
+          max-height: 90vh;
+          overflow-y: auto;
+          padding: 2.5rem 1.5rem 2rem;
+          border-radius: var(--radius-lg);
+          background-color: var(--cdif-bg-surface);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .modal-panel:focus { outline: none; }
+        @media (min-width: 576px) {
+          .modal-panel { padding: 3rem 2.5rem; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -91,9 +108,9 @@ export function VolunteerModal({ isOpen, onClose }) {
           borderRadius: 'var(--radius-md)',
           marginBottom: '1rem'
         }}>
-          <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1rem' }}>
+          <h3 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1rem' }}>
             Current Open Roles
-          </h4>
+          </h3>
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: 0, margin: 0, fontSize: '0.95rem' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="var(--cdif-primary)" /> ICT & Digital Literacy Mentors</li>
             <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="var(--cdif-primary)" /> Caregiver Business Coaches</li>
@@ -155,9 +172,9 @@ export function PartnerModal({ isOpen, onClose }) {
             <Building size={24} />
           </div>
           <div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--cdif-text-heading)', marginBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--cdif-text-heading)', marginBottom: '0.5rem' }}>
               Institutional Proposals
-            </h4>
+            </h3>
             <p style={{ fontSize: '0.95rem', color: 'var(--cdif-text-body)', marginBottom: 0 }}>
               To ensure your proposal reaches the correct desk, please email our partnerships team directly with a brief outline of your intended scope and objectives.
             </p>
@@ -208,9 +225,9 @@ export function DonateModal({ isOpen, onClose }) {
             marginBottom: '2rem',
             borderLeft: '4px solid var(--cdif-primary)'
           }}>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1.2rem' }}>
+            <h3 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1.2rem' }}>
               Direct Bank Transfer
-            </h4>
+            </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--cdif-text-muted)', fontWeight: 600 }}>Account Name</div>
@@ -244,11 +261,11 @@ export function DonateModal({ isOpen, onClose }) {
             marginBottom: '2rem',
             borderLeft: '4px solid var(--cdif-accent-gold)'
           }}>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '0.6rem' }}>
+            <h3 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '0.6rem' }}>
               Transfer details coming next
-            </h4>
+            </h3>
             <p style={{ fontSize: '0.95rem', color: 'var(--cdif-text-body)', margin: 0 }}>
-              Email the partnerships desk and we will send verified account details.
+              Email us and we will send verified account details.
             </p>
           </div>
         )}
@@ -305,6 +322,11 @@ export function CertificateViewerModal({ isOpen, onClose }) {
 
 export function SearchOverlay({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
+  const close = () => {
+    setQuery('');
+    onClose();
+  };
+  const dialogRef = useDialog(isOpen, close);
 
   if (!isOpen) return null;
 
@@ -313,24 +335,27 @@ export function SearchOverlay({ isOpen, onClose }) {
   const filteredStories = successStories.filter(s => s.caregiverName.toLowerCase().includes(q) || s.programme.toLowerCase().includes(q));
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(14, 36, 31, 0.95)',
-      backdropFilter: 'blur(16px)',
-      zIndex: 3000,
-      padding: '2rem 1.5rem',
-      color: '#fff',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}>
+    <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(28, 11, 37, 0.97)',
+        backdropFilter: 'blur(16px)',
+        zIndex: 3000,
+        padding: '2rem 1.5rem',
+        color: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
+    >
       <div style={{ width: '100%', maxWidth: '720px', display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem' }}>
-        <button type="button" onClick={onClose} aria-label="Close search" style={{ color: '#fff', cursor: 'pointer', background: 'none', border: 'none' }}>
-          <X size={32} />
+        <button type="button" onClick={close} aria-label="Close search" className="icon-container" style={{ width: '44px', height: '44px', color: '#fff', cursor: 'pointer', background: 'none', border: 'none' }}>
+          <X size={32} aria-hidden="true" />
         </button>
       </div>
 
@@ -343,10 +368,11 @@ export function SearchOverlay({ isOpen, onClose }) {
           paddingBottom: '0.8rem',
           marginBottom: '2rem'
         }}>
-          <Search size={28} color="var(--cdif-accent-gold)" />
+          <Search size={28} color="var(--cdif-accent-gold)" aria-hidden="true" />
           <input 
-            type="text"
-            autoFocus
+            type="search"
+            data-autofocus
+            aria-label="Search programmes and stories"
             placeholder="Search programmes or stories"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -371,7 +397,7 @@ export function SearchOverlay({ isOpen, onClose }) {
                 <Link
                   key={p.id}
                   to={`/programmes/${p.id}`}
-                  onClick={onClose}
+                  onClick={close}
                   style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem', display: 'block', color: '#fff', textDecoration: 'none' }}
                 >
                   <div style={{ fontWeight: 700 }}>{p.title}</div>
@@ -388,7 +414,7 @@ export function SearchOverlay({ isOpen, onClose }) {
                 <Link
                   key={s.id}
                   to="/impact"
-                  onClick={onClose}
+                  onClick={close}
                   style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 'var(--radius-md)', marginBottom: '0.5rem', display: 'block', color: '#fff', textDecoration: 'none' }}
                 >
                   <div style={{ fontWeight: 700 }}>{s.caregiverName}</div>

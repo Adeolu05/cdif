@@ -4,9 +4,14 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Play, 
-  FileText
+  FileText,
+  Quote
 } from 'lucide-react';
-import { orgDetails, coreProgrammes, megaIctIslandData, fieldMedia, successStories } from '../data/cdifData';
+import { orgDetails, megaIctIslandData, fieldMedia, successStories, impactMetrics } from '../data/cdifData';
+import ProgrammeList from '../components/ProgrammeList';
+import MegaIctFeature from '../components/MegaIctFeature';
+import RegistrationFacts from '../components/RegistrationFacts';
+import usePageMeta from '../hooks/usePageMeta';
 
 export default function HomePage({ 
   onOpenDonate, 
@@ -15,114 +20,74 @@ export default function HomePage({
   onOpenVideoModal, 
   onOpenCertificate
 }) {
+  usePageMeta(null, orgDetails.mission);
+  const featuredStory = successStories[0];
+
   return (
-    <div className="home-story-wrapper" style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
+    <div className="home-story-wrapper">
       
       {/* =========================================================================
-         PROLOGUE: NARRATIVE HERO (Simplified, Typography-led, Real Photography)
+         PROLOGUE: NARRATIVE HERO (Typography-led, Real Photography)
          ========================================================================= */}
-      <section className="hero-section" style={{
-        backgroundColor: 'var(--cdif-bg-paper)',
-        paddingTop: '3.5rem',
-        paddingBottom: '3.5rem',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
+      <section className="hero-section">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '6rem',
-            alignItems: 'center'
-          }} className="hero-editorial-grid">
+          <div className="hero-editorial-grid">
             
-            {/* Hero Typography Column */}
             <div style={{ zIndex: 2 }}>
-              <div style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '0.6rem', 
-                marginBottom: '2rem',
-                borderBottom: '1px solid var(--cdif-primary)',
-                paddingBottom: '0.5rem'
-              }}>
-                <ShieldCheck size={16} color="var(--cdif-primary)" />
-                <span style={{ fontSize: '0.85rem', letterSpacing: '0.08em', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase' }}>
-                  {orgDetails.motto}
-                </span>
+              <div className="eyebrow eyebrow-accent" style={{ marginBottom: '1.5rem' }}>
+                {orgDetails.motto}
               </div>
 
-              <h1 className="display-1 hero-headline" style={{
-                color: 'var(--cdif-text-heading)',
-                marginBottom: '1.5rem',
-              }}>
-                <span style={{ display: 'block' }}>Strengthening Families.</span>
-                <span style={{ display: 'block' }}>Nurturing Children.</span>
-                <span style={{ color: 'var(--cdif-primary)', display: 'block' }}>Building Resilient<br />Communities.</span>
+              <h1 className="display-1 hero-headline">
+                Strengthening Families. Nurturing Children.{' '}
+                <span style={{ color: 'var(--cdif-primary)' }}>Building Resilient Communities.</span>
               </h1>
 
-              <p className="body-editorial-large hero-paragraph" style={{
-                marginBottom: '2.5rem',
-                maxWidth: '540px'
-              }}>
+              <p className="body-editorial-large hero-paragraph">
                 Strong families are the bedrock of a thriving society. We equip vulnerable caregivers with micro-grants, business equipment, and educational support—empowering households to build self-sustaining futures.
               </p>
 
-              {/* Action Buttons (Calm, Intentional) */}
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1.5rem',
+                gap: '1rem 1.5rem',
                 alignItems: 'center',
               }}>
-                <button onClick={onOpenDonate} className="btn btn-editorial-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+                <button type="button" onClick={onOpenDonate} className="btn btn-editorial-primary btn-lg">
                   Support Our Work
                 </button>
 
                 <button 
+                  type="button"
                   onClick={() => onOpenVideoModal(fieldMedia.communitySession.video, 'Community Capacity Session')} 
-                  className="btn btn-editorial-outline"
-                  style={{ padding: '0.95rem 2rem', fontSize: '1rem', border: 'none', gap: '0.8rem' }}
+                  className="btn hero-watch"
                 >
-                  <div className="icon-container" style={{
-                    width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--cdif-bg-subtle)', color: 'var(--cdif-primary)'
-                  }}>
-                    <Play size={14} fill="currentColor" style={{ marginLeft: '2px' }} />
-                  </div>
-                  <span style={{ fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: '4px' }}>Watch Field Report</span>
+                  <span className="icon-container hero-watch-icon">
+                    <Play size={14} fill="currentColor" style={{ marginLeft: '2px' }} aria-hidden="true" />
+                  </span>
+                  <span style={{ textDecoration: 'underline', textUnderlineOffset: '4px' }}>Watch Field Report</span>
                 </button>
+              </div>
+
+              <div className="hero-trust">
+                <ShieldCheck size={18} aria-hidden="true" />
+                <span>CAC-registered NGO · CAC/IT/{orgDetails.registration.number}</span>
               </div>
             </div>
 
-            {/* Hero Editorial Image (Full Bleed Feel) */}
             <div style={{ position: 'relative' }}>
-              <div className="hero-img-container" style={{
-                width: '100%',
-                height: 'min(520px, 65vh)',
-                borderRadius: 'var(--radius-lg)',
-                overflow: 'hidden',
-                position: 'relative'
-              }}>
+              <div className="media-frame hero-img-container">
                 <img 
                   src={fieldMedia.communitySession.banner} 
                   alt="CDIF community session under the organisation banner" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  fetchPriority="high"
                 />
               </div>
-              <div style={{
-                position: 'absolute',
-                bottom: '-2rem',
-                left: '-2rem',
-                backgroundColor: 'var(--cdif-bg-surface)',
-                padding: '1.5rem 2rem',
-                boxShadow: 'var(--shadow-cinematic)',
-                maxWidth: '300px'
-              }} className="desktop-quote-card">
-                <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+              <div className="desktop-quote-card">
+                <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
                   Field Dispatch
                 </div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--cdif-text-heading)', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--cdif-text-heading)', lineHeight: 1.45 }}>
                   "Restoring dignity and hope to households through sustainable interventions."
                 </div>
               </div>
@@ -133,124 +98,52 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-         ACT I: THE LIVING PHILOSOPHY (Larger headline, reduced copy)
+         AT A GLANCE: VERIFIED FACTS
          ========================================================================= */}
-      <section className="editorial-section" style={{ backgroundColor: 'var(--cdif-bg-surface)' }}>
+      <section className="section-surface home-facts" aria-label="CDIF at a glance">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '6rem',
-            alignItems: 'center'
-          }} className="editorial-two-col">
+          <dl className="stat-strip">
+            {impactMetrics.map((metric) => (
+              <div key={metric.id} className="reveal">
+                <dt className="stat-label">{metric.label}</dt>
+                <dd className="stat-value">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* =========================================================================
+         ACT I: THE LIVING PHILOSOPHY
+         ========================================================================= */}
+      <section className="editorial-section">
+        <div className="container">
+          <div className="editorial-two-col reveal">
             
-            <div style={{ position: 'relative', order: 2 }}>
-              <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden' }}>
+            <div className="media-accent home-why-image" style={{ order: 2 }}>
+              <div className="media-frame ratio-1-1">
                 <img 
                   src={fieldMedia.photos[2].src} 
-                  alt="Caregivers and children supported by CDIF" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(20%)' }}
+                  alt={fieldMedia.photos[2].alt} 
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
 
             <div style={{ order: 1 }}>
-              <h2 className="display-1" style={{ marginBottom: '2.5rem', color: 'var(--cdif-primary)' }}>
+              <div className="eyebrow eyebrow-accent">Our Belief</div>
+              <h2 className="display-2" style={{ marginBottom: '2rem' }}>
                 Why Strong Families Matter
               </h2>
-              <div className="pull-quote" style={{ marginBottom: '2.5rem' }}>
+              <div className="pull-quote" style={{ marginBottom: '2rem' }}>
                 "When you empower a caregiver, you secure a child's education and restore a family's future."
               </div>
-              <p className="body-editorial-large" style={{ color: 'var(--cdif-text-body)' }}>
+              <p className="body-editorial-large" style={{ marginBottom: '2rem' }}>
                 {orgDetails.vision}
               </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-         ACT II: #MEGA ICT ISLAND (Major immersive editorial story)
-         ========================================================================= */}
-      <section className="editorial-section" style={{
-        backgroundColor: 'var(--cdif-bg-midnight)',
-        color: '#FFFFFF'
-      }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '5rem',
-            alignItems: 'center'
-          }} className="editorial-two-col">
-            
-            <div style={{ position: 'relative' }}>
-              <button
-                type="button"
-                onClick={() => onOpenVideoModal(megaIctIslandData.videoSrc, megaIctIslandData.title)}
-                aria-label="Play Mega ICT Island field video"
-                style={{
-                  width: '100%',
-                  aspectRatio: '16/9',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  border: 'none',
-                  padding: 0,
-                  background: 'none'
-                }}
-              >
-                <img 
-                  src={megaIctIslandData.posterImage} 
-                  alt="#MEGA ICT ISLAND Training Session" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }}
-                />
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <div style={{
-                    width: '90px',
-                    height: '90px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--cdif-accent-gold)',
-                    color: 'var(--cdif-bg-midnight)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'transform 0.3s ease'
-                  }}>
-                    <Play size={36} fill="currentColor" style={{ marginLeft: '6px' }} />
-                  </div>
-                </div>
-              </button>
-            </div>
-
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--cdif-accent-gold)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>
-                Signature Initiative
-              </div>
-              <h2 className="display-1" style={{ color: '#FFFFFF', marginBottom: '2rem' }}>
-                {megaIctIslandData.hashtag}
-              </h2>
-              <p className="body-editorial-large" style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '2.5rem' }}>
-                {megaIctIslandData.description}
-              </p>
-              
-              <div style={{ display: 'flex', gap: '3rem', borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: '2rem', marginBottom: '2rem' }}>
-                {megaIctIslandData.stats.slice(0, 2).map((stat) => (
-                  <div key={stat.label}>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--cdif-accent-gold)', lineHeight: 1.2 }}>{stat.value}</div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff', marginTop: '0.5rem' }}>{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-              <Link to="/mega-ict-island" className="btn btn-editorial-outline-white" style={{ textDecoration: 'none' }}>
-                Explore this Initiative
+              <Link to="/about" className="text-link">
+                About CDIF <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
 
@@ -259,119 +152,64 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-         ACT III: PROGRAMMES AS STORIES (Editorial alternating layout, no cards)
+         ACT II: #MEGA ICT ISLAND
+         ========================================================================= */}
+      <MegaIctFeature onPlay={() => onOpenVideoModal(megaIctIslandData.videoSrc, megaIctIslandData.title)} />
+
+      {/* =========================================================================
+         ACT III: PROGRAMMES
          ========================================================================= */}
       <section className="editorial-section">
         <div className="container">
-          
-          <div style={{ marginBottom: '6rem' }}>
-            <h2 className="display-1" style={{ color: 'var(--cdif-text-heading)' }}>
-              Interventions that Work
-            </h2>
+          <div className="section-head">
+            <div>
+              <div className="eyebrow eyebrow-accent">What We Do</div>
+              <h2 className="display-2">Interventions that Work</h2>
+            </div>
+            <Link to="/programmes" className="text-link">
+              All programmes <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-            {coreProgrammes.map((prog, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <div key={prog.id} style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '5rem',
-                  alignItems: 'center'
-                }} className="editorial-two-col">
-                  
-                  <div style={{ order: isEven ? 1 : 2 }}>
-                    <div style={{ width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
-                      <img src={prog.image} alt={prog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
-                  </div>
-
-                  <div style={{ order: isEven ? 2 : 1 }}>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>
-                      0{idx + 1} — {prog.category}
-                    </div>
-                    <h3 className="display-3" style={{ marginBottom: '1.5rem', color: 'var(--cdif-text-heading)' }}>
-                      {prog.title}
-                    </h3>
-                    <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)', marginBottom: '2.5rem' }}>
-                      {prog.overview}
-                    </p>
-
-                    <Link 
-                      to={`/programmes/${prog.id}`}
-                      style={{ 
-                        background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-primary)', 
-                        paddingBottom: '0.3rem', color: 'var(--cdif-primary)', fontWeight: 700, 
-                        fontSize: '1.05rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Read Full Story <ArrowRight size={16} />
-                    </Link>
-                  </div>
-
-                </div>
-              );
-            })}
-          </div>
-
+          <ProgrammeList variant="cards" />
         </div>
       </section>
 
       {/* =========================================================================
-         ACT IV: VOICES OF RESILIENCE (One strong featured human story)
+         ACT IV: VOICES OF RESILIENCE
          ========================================================================= */}
-      <section className="editorial-section" style={{ backgroundColor: 'var(--cdif-bg-subtle)' }}>
+      <section className="editorial-section section-subtle">
         <div className="container">
-          
-          {/* Featured Story */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '4rem',
-            alignItems: 'center'
-          }} className="editorial-two-col">
+          <div className="editorial-two-col reveal">
             
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '2rem' }}>
-                Voices of Resilience
-              </div>
+              <h2 className="eyebrow eyebrow-accent" style={{ marginBottom: '1.5rem' }}>Voices of Resilience</h2>
+
+              <Quote size={44} className="home-quote-mark" aria-hidden="true" />
+              <blockquote className="home-quote">
+                {featuredStory.excerpt}
+              </blockquote>
               
-              <h2 className="display-1" style={{ color: 'var(--cdif-text-heading)', marginBottom: '2rem', fontStyle: 'italic', lineHeight: 1.2 }}>
-                "{successStories[0].quote}"
-              </h2>
-              
-              <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--cdif-hairline-strong)' }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--cdif-text-heading)' }}>
-                  {successStories[0].caregiverName}
+              <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--cdif-hairline-strong)' }}>
+                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--cdif-text-heading)' }}>
+                  {featuredStory.caregiverName}
                 </div>
                 <div style={{ fontSize: '0.95rem', color: 'var(--cdif-primary)', fontWeight: 600, marginTop: '0.2rem' }}>
-                  {successStories[0].programme}
+                  {featuredStory.programme}
                 </div>
               </div>
 
-              <Link
-                to="/impact"
-                style={{ 
-                  marginTop: '2.5rem', background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-text-heading)', 
-                  paddingBottom: '0.3rem', color: 'var(--cdif-text-heading)', fontWeight: 700, 
-                  fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  textDecoration: 'none'
-                }}
-              >
-                Read more field stories <ArrowRight size={16} />
+              <Link to="/impact" className="text-link text-link-dark" style={{ marginTop: '2.25rem' }}>
+                Read her full story <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <img 
-                  src={successStories[0].image} 
-                  alt={successStories[0].caregiverName} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
+            <div className="media-frame ratio-3-4 home-story-image">
+              <img 
+                src={featuredStory.image} 
+                alt={`${featuredStory.caregiverName}, ${featuredStory.role}`} 
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
           </div>
@@ -379,71 +217,63 @@ export default function HomePage({
       </section>
 
       {/* =========================================================================
-         ACT V: ACCOUNTABILITY (Simplified Registration & Governance)
+         ACT V: ACCOUNTABILITY
          ========================================================================= */}
-      <section className="editorial-section">
+      <section className="editorial-section section-surface">
         <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-            <h2 className="display-1" style={{ marginBottom: '2rem' }}>
-              Institutional Integrity
+          <div className="section-intro-centered">
+            <div className="eyebrow eyebrow-accent">Institutional Integrity</div>
+            <h2 className="display-2" style={{ marginBottom: '1.25rem' }}>
+              Registered, Governed, Accountable
             </h2>
-            <p className="body-editorial-large" style={{ color: 'var(--cdif-text-muted)', marginBottom: '3.5rem' }}>
-              CDIF operates under strict oversight. We are a registered Non-Governmental Organization committed to financial transparency and child safeguarding.
+            <p className="body-editorial-large" style={{ color: 'var(--cdif-text-muted)' }}>
+              CDIF is a registered non-governmental organisation, overseen by a board of trustees and committed to financial transparency and child safeguarding.
             </p>
-            
-            <div style={{ display: 'inline-block', textAlign: 'left', borderLeft: '4px solid var(--cdif-primary)', paddingLeft: '2rem' }}>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--cdif-text-heading)', marginBottom: '0.5rem' }}>
-                {orgDetails.registration.fullText}
-              </div>
-              <div style={{ fontSize: '1.05rem', color: 'var(--cdif-text-muted)', marginBottom: '1.5rem' }}>
-                TIN: {orgDetails.registration.tin} | Date: {orgDetails.registration.date}
-              </div>
-              {fieldMedia.certificate && (
-                <button 
-                  type="button"
-                  onClick={onOpenCertificate}
-                  style={{ 
-                    background: 'none', border: 'none', color: 'var(--cdif-primary)', fontWeight: 700, 
-                    fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                    textDecoration: 'underline', textUnderlineOffset: '4px'
-                  }}
-                >
-                  <FileText size={16} /> View Official CAC Certificate
-                </button>
-              )}
-            </div>
+          </div>
+
+          <RegistrationFacts />
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem 2rem', marginTop: '2.5rem' }}>
+            <Link to="/transparency" className="text-link">
+              Registration & governance <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            {fieldMedia.certificate && (
+              <button type="button" onClick={onOpenCertificate} className="text-link">
+                <FileText size={16} aria-hidden="true" /> View Official CAC Certificate
+              </button>
+            )}
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-         ACT VI: JOIN THE STORY (Emotional CTA, Support/Partner/Volunteer)
+         ACT VI: JOIN THE STORY
          ========================================================================= */}
-      <section className="editorial-section" style={{ backgroundColor: 'var(--cdif-primary-dark)', color: '#FFFFFF', textAlign: 'center' }}>
-        <div className="container" style={{ maxWidth: '800px' }}>
+      <section className="editorial-section section-plum" style={{ textAlign: 'center' }}>
+        <div className="container reveal" style={{ maxWidth: '800px' }}>
           
-          <h2 className="display-1" style={{ color: '#FFFFFF', marginBottom: '2rem' }}>
+          <h2 className="display-2" style={{ marginBottom: '1.5rem' }}>
             Stronger families don't happen by accident.
           </h2>
 
-          <p className="body-editorial-large" style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '4rem' }}>
+          <p className="body-editorial-large" style={{ marginBottom: '3rem' }}>
             It takes intentional support, resources, and community collaboration. Join us in providing the tools that help caregivers build sustainable futures.
           </p>
 
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '2rem',
+            gap: '1rem',
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <button onClick={onOpenDonate} className="btn btn-editorial-gold" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>
+            <button type="button" onClick={onOpenDonate} className="btn btn-editorial-gold btn-lg">
               Support Our Work
             </button>
-            <button onClick={onOpenPartner} style={{ background: 'none', border: 'none', color: '#fff', fontSize: '1.1rem', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '6px' }}>
+            <button type="button" onClick={onOpenPartner} className="btn btn-editorial-outline-white btn-lg">
               Partner With Us
             </button>
-            <button onClick={onOpenVolunteer} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', fontWeight: 700, cursor: 'pointer' }}>
+            <button type="button" onClick={onOpenVolunteer} className="btn btn-editorial-outline-white btn-lg">
               Volunteer
             </button>
           </div>
@@ -452,35 +282,116 @@ export default function HomePage({
       </section>
 
       <style>{`
+        .hero-section {
+          padding: 2.5rem 0 4rem;
+          background-image: radial-gradient(50% 60% at 90% 10%, rgba(245, 184, 0, 0.1), transparent 70%);
+        }
+        .hero-editorial-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          align-items: center;
+        }
+        .hero-headline {
+          font-size: clamp(2.4rem, 2.2vw + 1.45rem, 4rem);
+          margin-bottom: 1.5rem;
+        }
+        .hero-paragraph {
+          max-width: 540px;
+          margin-bottom: 2rem;
+        }
+        .hero-watch {
+          padding: 0.5rem 0.25rem;
+          font-size: 1rem;
+          gap: 0.8rem;
+          background: none;
+          color: var(--cdif-text-heading);
+        }
+        .hero-watch-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: var(--cdif-primary-light);
+          color: var(--cdif-primary);
+          transition: var(--transition-normal);
+        }
+        .hero-watch:hover .hero-watch-icon {
+          background-color: var(--cdif-primary);
+          color: #FFFFFF;
+        }
+        .hero-trust {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-top: 2rem;
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: var(--cdif-text-muted);
+        }
+        .hero-trust svg {
+          color: var(--cdif-primary);
+          flex-shrink: 0;
+        }
+        .hero-img-container {
+          aspect-ratio: 4 / 3;
+        }
+        .desktop-quote-card {
+          display: none;
+          position: absolute;
+          bottom: -2rem;
+          left: -2.5rem;
+          max-width: 300px;
+          padding: 1.4rem 1.75rem;
+          border-radius: var(--radius-md);
+          border-left: 4px solid var(--cdif-accent-gold);
+          background-color: var(--cdif-bg-surface);
+          box-shadow: var(--shadow-medium);
+        }
+        .home-facts {
+          padding: 2.75rem 0;
+          border-top: 1px solid var(--cdif-hairline);
+          border-bottom: 1px solid var(--cdif-hairline);
+        }
+        .home-why-image {
+          max-width: 520px;
+          justify-self: center;
+          width: 100%;
+        }
+        .home-quote-mark {
+          display: block;
+          color: var(--cdif-accent-gold);
+          margin-bottom: 0.75rem;
+        }
+        .home-quote {
+          font-family: var(--font-heading);
+          font-size: clamp(1.9rem, 2.4vw + 1rem, 3rem);
+          font-style: italic;
+          font-weight: 700;
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+          color: var(--cdif-text-heading);
+        }
+        .home-story-image {
+          max-width: 460px;
+          justify-self: center;
+        }
         @media (min-width: 992px) {
           .hero-section {
-            min-height: calc(100vh - 108px); /* Account for 64px header + 44px announcement */
+            min-height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            padding: 3rem 0 4.5rem;
           }
           .hero-editorial-grid {
-            grid-template-columns: 1fr 0.9fr !important;
-          }
-          .editorial-two-col {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .desktop-quote-card {
-            display: block !important;
-          }
-        }
-        @media (min-width: 1366px) and (max-height: 800px) {
-          .hero-section {
-            padding-top: 2rem !important;
-            padding-bottom: 2rem !important;
-          }
-          .hero-headline {
-            font-size: 3.5rem !important;
-            margin-bottom: 1rem !important;
-          }
-          .hero-paragraph {
-            font-size: 1.05rem !important;
-            margin-bottom: 1.8rem !important;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
           }
           .hero-img-container {
-            height: min(440px, 60vh) !important;
+            aspect-ratio: auto;
+            height: min(520px, 62vh);
+          }
+          .desktop-quote-card {
+            display: block;
           }
         }
       `}</style>
