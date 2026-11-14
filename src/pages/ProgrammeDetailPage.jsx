@@ -3,6 +3,7 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { coreProgrammes } from '../data/cdifData';
 import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
+import Photo, { SIZES_WIDE } from '../components/Photo';
 
 export default function ProgrammeDetailPage() {
   const { id } = useParams();
@@ -28,9 +29,10 @@ export default function ProgrammeDetailPage() {
       <section style={{ paddingBottom: '2rem' }}>
         <div className="container">
           <div className="media-frame ratio-wide">
-            <img 
+            <Photo 
               src={programme.image} 
               alt={programme.title} 
+              sizes={SIZES_WIDE}
               fetchPriority="high"
             />
           </div>

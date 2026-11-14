@@ -17,7 +17,7 @@ npm run preview  # serve the production build
 ## Where things live
 
 - `src/data/cdifData.js`: all copy and facts (organisation details, contacts, bank details, programmes, stories, FAQs, reports). Edit content here.
-- `public/assets/media/`: photos and videos referenced from the data file.
+- `public/assets/media/`: photos and videos referenced from the data file. Photos are WebP, each with a 640px-wide `-640.webp` copy that phones and cards load instead (`src/components/Photo.jsx`). `community_session_banner.jpg` stays a JPEG because it is the link-preview image.
 - `src/pages/`: one component per route; routes are declared in `src/App.jsx`.
 - `src/components/`: header, footer, modals and shared sections.
 - `src/index.css`: design tokens and shared layout classes.
@@ -26,7 +26,7 @@ npm run preview  # serve the production build
 
 - **Bank details**: fill in `orgDetails.bankDetails` and set `verified: true` to show them in the donate modal.
 - **Phone, WhatsApp, address**: empty values are hidden everywhere.
-- **CAC certificate**: set `fieldMedia.certificate` to show the "View CAC Certificate" buttons.
+- **CAC certificate**: add the image to `public/assets/media/` and set `fieldMedia.certificate` to its path to show the "View CAC Certificate" buttons.
 - **Financial reports**: add `href` and `size` to an entry in `transparencyReports` to enable its download.
 
 ## Absolute URLs

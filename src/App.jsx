@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -6,16 +6,6 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ProgrammesPage from './pages/ProgrammesPage';
-import ProgrammeDetailPage from './pages/ProgrammeDetailPage';
-import MegaIctIslandPage from './pages/MegaIctIslandPage';
-import ImpactPage from './pages/ImpactPage';
-import TransparencyPage from './pages/TransparencyPage';
-import GetInvolvedPage from './pages/GetInvolvedPage';
-import ContactPage from './pages/ContactPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import NotFoundPage from './pages/NotFoundPage';
 
 import { 
   VolunteerModal, 
@@ -26,6 +16,17 @@ import {
   CertificateViewerModal
 } from './components/Modals';
 import { fieldMedia, megaIctIslandData } from './data/cdifData';
+
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ProgrammesPage = lazy(() => import('./pages/ProgrammesPage'));
+const ProgrammeDetailPage = lazy(() => import('./pages/ProgrammeDetailPage'));
+const MegaIctIslandPage = lazy(() => import('./pages/MegaIctIslandPage'));
+const ImpactPage = lazy(() => import('./pages/ImpactPage'));
+const TransparencyPage = lazy(() => import('./pages/TransparencyPage'));
+const GetInvolvedPage = lazy(() => import('./pages/GetInvolvedPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export default function App() {
   const [volunteerOpen, setVolunteerOpen] = useState(false);
@@ -61,47 +62,49 @@ export default function App() {
         />
 
         <main id="main" tabIndex={-1} style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={
-              <HomePage 
-                onOpenDonate={() => setDonateOpen(true)}
-                onOpenVolunteer={() => setVolunteerOpen(true)}
-                onOpenPartner={() => setPartnerOpen(true)}
-                onOpenVideoModal={openVideoModal}
-                onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined}
-              />
-            } />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/programmes" element={<ProgrammesPage />} />
-            <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
-            <Route path="/mega-ict-island" element={
-              <MegaIctIslandPage 
-                onOpenVideoModal={openVideoModal}
-                onOpenVolunteer={() => setVolunteerOpen(true)}
-                onOpenPartner={() => setPartnerOpen(true)}
-                onOpenDonate={() => setDonateOpen(true)}
-              />
-            } />
-            <Route path="/impact" element={<ImpactPage onOpenStoryModal={handleOpenStoryModal} />} />
-            <Route path="/transparency" element={
-              <TransparencyPage onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined} />
-            } />
-            <Route path="/get-involved" element={
-              <GetInvolvedPage 
-                onOpenVolunteer={() => setVolunteerOpen(true)}
-                onOpenPartner={() => setPartnerOpen(true)}
-                onOpenDonate={() => setDonateOpen(true)}
-              />
-            } />
-            <Route path="/contact" element={
-              <ContactPage 
-                onOpenPartner={() => setPartnerOpen(true)}
-                onOpenVolunteer={() => setVolunteerOpen(true)}
-              />
-            } />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <Suspense fallback={<div style={{ minHeight: '70vh' }} />}>
+            <Routes>
+              <Route path="/" element={
+                <HomePage 
+                  onOpenDonate={() => setDonateOpen(true)}
+                  onOpenVolunteer={() => setVolunteerOpen(true)}
+                  onOpenPartner={() => setPartnerOpen(true)}
+                  onOpenVideoModal={openVideoModal}
+                  onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined}
+                />
+              } />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/programmes" element={<ProgrammesPage />} />
+              <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
+              <Route path="/mega-ict-island" element={
+                <MegaIctIslandPage 
+                  onOpenVideoModal={openVideoModal}
+                  onOpenVolunteer={() => setVolunteerOpen(true)}
+                  onOpenPartner={() => setPartnerOpen(true)}
+                  onOpenDonate={() => setDonateOpen(true)}
+                />
+              } />
+              <Route path="/impact" element={<ImpactPage onOpenStoryModal={handleOpenStoryModal} />} />
+              <Route path="/transparency" element={
+                <TransparencyPage onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined} />
+              } />
+              <Route path="/get-involved" element={
+                <GetInvolvedPage 
+                  onOpenVolunteer={() => setVolunteerOpen(true)}
+                  onOpenPartner={() => setPartnerOpen(true)}
+                  onOpenDonate={() => setDonateOpen(true)}
+                />
+              } />
+              <Route path="/contact" element={
+                <ContactPage 
+                  onOpenPartner={() => setPartnerOpen(true)}
+                  onOpenVolunteer={() => setVolunteerOpen(true)}
+                />
+              } />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />

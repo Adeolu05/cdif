@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { coreProgrammes } from '../data/cdifData';
+import Photo, { SIZES_CARD } from './Photo';
 
 function ProgrammeCards({ Heading }) {
   return (
@@ -8,7 +9,7 @@ function ProgrammeCards({ Heading }) {
       {coreProgrammes.map((prog, idx) => (
         <Link key={prog.id} to={`/programmes/${prog.id}`} className="card card-link reveal" aria-label={`${prog.title}: learn more`}>
           <div className="media-frame ratio-4-3">
-            <img src={prog.image} alt="" loading="lazy" decoding="async" />
+            <Photo src={prog.image} alt="" sizes={SIZES_CARD} loading="lazy" decoding="async" />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '1.75rem' }}>
             <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>
@@ -38,7 +39,7 @@ function ProgrammeRows({ Heading }) {
         return (
           <article key={prog.id} className="editorial-two-col reveal">
             <div className="media-frame ratio-4-3" style={{ order: imageFirst ? 1 : 2 }}>
-              <img src={prog.image} alt={prog.title} loading="lazy" decoding="async" />
+              <Photo src={prog.image} alt={prog.title} loading="lazy" decoding="async" />
             </div>
 
             <div style={{ order: imageFirst ? 2 : 1 }}>

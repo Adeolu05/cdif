@@ -5,6 +5,7 @@ import { orgDetails, fieldMedia } from '../data/cdifData';
 import PageHero from '../components/PageHero';
 import RegistrationFacts from '../components/RegistrationFacts';
 import usePageMeta from '../hooks/usePageMeta';
+import Photo, { SIZES_WIDE } from '../components/Photo';
 
 export default function AboutPage() {
   usePageMeta('About Us', orgDetails.vision);
@@ -20,9 +21,10 @@ export default function AboutPage() {
       <section style={{ paddingBottom: '4rem' }}>
         <div className="container">
           <div className="media-frame ratio-wide">
-            <img 
+            <Photo 
               src={fieldMedia.communitySession.audience} 
               alt="Families gathered at a CDIF community meeting" 
+              sizes={SIZES_WIDE}
               fetchPriority="high"
             />
           </div>
@@ -43,7 +45,7 @@ export default function AboutPage() {
               </div>
               <div className="media-accent">
                 <div className="media-frame ratio-4-3">
-                  <img src={fieldMedia.photos[1].src} alt={fieldMedia.photos[1].alt} loading="lazy" decoding="async" style={{ objectPosition: 'center 25%' }} />
+                  <Photo src={fieldMedia.photos[1].src} alt={fieldMedia.photos[1].alt} loading="lazy" decoding="async" style={{ objectPosition: 'center 25%' }} />
                 </div>
               </div>
             </div>
@@ -57,7 +59,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="media-frame ratio-4-3" style={{ order: 1 }}>
-                <img src={fieldMedia.communitySession.facilitator} alt="Facilitator leading a CDIF community session" loading="lazy" decoding="async" />
+                <Photo src={fieldMedia.communitySession.facilitator} alt="Facilitator leading a CDIF community session" loading="lazy" decoding="async" />
               </div>
             </div>
 
