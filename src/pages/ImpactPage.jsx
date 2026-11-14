@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { impactMetrics, successStories } from '../data/cdifData';
 import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
+import Photo from '../components/Photo';
 
 export default function ImpactPage({ onOpenStoryModal }) {
   usePageMeta('Field Impact & Stories', 'What CDIF delivers for caregivers and children, and the voices of the families we support.');
@@ -47,7 +48,7 @@ export default function ImpactPage({ onOpenStoryModal }) {
               return (
                 <article key={story.id} className="editorial-two-col reveal">
                   <div className="media-frame ratio-3-4 story-image" style={{ order: imageFirst ? 1 : 2 }}>
-                    <img src={story.image} alt={`${story.caregiverName}, ${story.role}`} loading="lazy" decoding="async" />
+                    <Photo src={story.image} alt={`${story.caregiverName}, ${story.role}`} sizes="(min-width: 992px) 480px, 100vw" loading="lazy" decoding="async" />
                   </div>
 
                   <div style={{ order: imageFirst ? 2 : 1 }}>

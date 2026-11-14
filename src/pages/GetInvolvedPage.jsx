@@ -3,6 +3,7 @@ import { Heart, Handshake, Users } from 'lucide-react';
 import { fieldMedia } from '../data/cdifData';
 import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
+import Photo from '../components/Photo';
 
 export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpenDonate }) {
   usePageMeta('Get Involved', 'Donate, partner, or volunteer with CDIF to help vulnerable families build self-sustaining futures.');
@@ -33,7 +34,7 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
                 </button>
               </div>
               <div className="media-frame ratio-4-3" style={{ order: 1 }}>
-                <img src={fieldMedia.photos[0].src} alt={fieldMedia.photos[0].alt} loading="lazy" decoding="async" />
+                <Photo src={fieldMedia.photos[0].src} alt={fieldMedia.photos[0].alt} loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -53,7 +54,7 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
                 </button>
               </div>
               <div className="media-frame ratio-4-3" style={{ order: 2 }}>
-                <img src={fieldMedia.photos[3].src} alt={fieldMedia.photos[3].alt} loading="lazy" decoding="async" />
+                <Photo src={fieldMedia.photos[3].src} alt={fieldMedia.photos[3].alt} loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -73,7 +74,7 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
                 </button>
               </div>
               <div className="media-frame ratio-4-3" style={{ order: 1 }}>
-                <img src={fieldMedia.communitySession.facilitator} alt="Facilitator addressing families at a CDIF outreach" loading="lazy" decoding="async" />
+                <Photo src={fieldMedia.communitySession.facilitator} alt="Facilitator addressing families at a CDIF outreach" loading="lazy" decoding="async" />
               </div>
             </div>
 

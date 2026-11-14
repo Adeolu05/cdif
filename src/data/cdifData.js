@@ -65,7 +65,7 @@ export const coreProgrammes = [
     title: "Food and Educational Support",
     subtitle: "Quarterly Food Assistance & School Readiness Kits",
     category: "Child & Family Care",
-    image: "/assets/media/photo_6_2026-08-10_14-01-14.jpg",
+    image: "/assets/media/photo_6_2026-08-10_14-01-14.webp",
     overview: "Every quarter, CDIF provides food assistance and educational support to vulnerable families within the community. This intervention helps reduce the burden on caregivers while ensuring that children remain healthy, nourished, and able to continue their education.",
     highlights: [
       "Nutritious food care packs for vulnerable households",
@@ -80,7 +80,7 @@ export const coreProgrammes = [
     title: "Caregiver Economic Empowerment",
     subtitle: "Soft Loans & Income-Generating Business Tools",
     category: "Livelihood & Resilience",
-    image: "/assets/media/photo_4_2026-08-10_14-01-14.jpg",
+    image: "/assets/media/photo_4_2026-08-10_14-01-14.webp",
     overview: "Recognising the fact that economically empowered caregivers are better able to care for their families, CDIF provides soft loans and livelihood support to help families establish or expand small businesses. We also provide income-generating equipment such as sewing machines, POS machines, and other essential tools that enable caregivers to earn sustainable incomes.",
     highlights: [
       "Revolving micro-soft loans for small businesses",
@@ -95,7 +95,7 @@ export const coreProgrammes = [
     title: "Youth Skills Development",
     subtitle: "Vocational & Digital ICT Training for Adolescents",
     category: "Youth Empowerment",
-    image: "/assets/media/photo_5_2026-08-10_14-01-14.jpg",
+    image: "/assets/media/photo_5_2026-08-10_14-01-14.webp",
     overview: "To keep young people meaningfully engaged and equip them with practical skills for the future, CDIF supports adolescents in vocational and technology training. Currently, the organisation is sponsoring nine teenagers to participate in ICT and hairdressing training during the long school holidays, helping them acquire valuable skills that enhance their future employability and entrepreneurship.",
     highlights: [
       "9 Teenagers currently sponsored for Holiday Training",
@@ -112,7 +112,7 @@ export const megaIctIslandData = {
   title: "Day 1 ICT Training Session",
   subtitle: "Sponsored by CAPACITY DEVELOPMENT INITIATIVE FOR FAMILIES",
   videoSrc: "/assets/media/mega_ict_island_day1.mp4",
-  posterImage: "/assets/media/mega_ict_day1_poster.jpg",
+  posterImage: "/assets/media/mega_ict_day1_poster.webp",
   description: "Live footage from Day 1 of the intensive ICT & Digital Empowerment Bootcamp. Teenagers and youth from vulnerable households are equipped with essential computer skills, web literacy, graphic design fundamentals, and digital tools for future employability.",
   stats: [
     { label: "Holiday Trainees Sponsored", value: "9 Teenagers" },
@@ -131,18 +131,18 @@ export const megaIctIslandData = {
 export const fieldMedia = {
   certificate: "",
   communitySession: {
-    facilitator: "/assets/media/community_session_facilitator.jpg",
-    banner: "/assets/media/community_session_banner.jpg",
-    audience: "/assets/media/community_session_audience.jpg",
+    facilitator: "/assets/media/community_session_facilitator.webp",
+    banner: "/assets/media/community_session_banner.webp",
+    audience: "/assets/media/community_session_audience.webp",
     video: "/assets/media/community_session.mp4"
   },
   photos: [
-    { src: "/assets/media/pos_empowerment_beneficiary.jpeg", alt: "CDIF Community Outreach & Beneficiary Empowerment Session", caption: "Caregiver POS & Livelihood Grant Outreach" },
-    { src: "/assets/media/photo_1_2026-08-10_14-01-14.jpg", alt: "Elderly beneficiary with food support", caption: "Community Food Support Delivery" },
-    { src: "/assets/media/photo_3_2026-08-10_14-01-14.jpg", alt: "Beneficiaries receiving assistance packages", caption: "Empowering Vulnerable Households" },
-    { src: "/assets/media/photo_4_2026-08-10_14-01-14.jpg", alt: "Caregiver receiving sewing machine grant", caption: "Caregiver Economic Empowerment" },
-    { src: "/assets/media/photo_5_2026-08-10_14-01-14.jpg", alt: "Sponsored teenagers at training session", caption: "Youth Skills Development: ICT & Hairdressing" },
-    { src: "/assets/media/photo_6_2026-08-10_14-01-14.jpg", alt: "Beneficiary with CDIF official banner", caption: "Quarterly Food and Educational Support" }
+    { src: "/assets/media/pos_empowerment_beneficiary.webp", alt: "CDIF Community Outreach & Beneficiary Empowerment Session", caption: "Caregiver POS & Livelihood Grant Outreach" },
+    { src: "/assets/media/photo_1_2026-08-10_14-01-14.webp", alt: "Elderly beneficiary with food support", caption: "Community Food Support Delivery" },
+    { src: "/assets/media/photo_3_2026-08-10_14-01-14.webp", alt: "Beneficiaries receiving assistance packages", caption: "Empowering Vulnerable Households" },
+    { src: "/assets/media/photo_4_2026-08-10_14-01-14.webp", alt: "Caregiver receiving sewing machine grant", caption: "Caregiver Economic Empowerment" },
+    { src: "/assets/media/photo_5_2026-08-10_14-01-14.webp", alt: "Sponsored teenagers at training session", caption: "Youth Skills Development: ICT & Hairdressing" },
+    { src: "/assets/media/photo_6_2026-08-10_14-01-14.webp", alt: "Beneficiary with CDIF official banner", caption: "Quarterly Food and Educational Support" }
   ]
 };
 
@@ -154,7 +154,7 @@ export const successStories = [
     programme: "Caregiver Economic Empowerment",
     excerpt: "Today, I pay school fees on time. I feed my children. I sleep peacefully.",
     quote: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
-    image: "/assets/media/pos_empowerment_beneficiary.jpeg",
+    image: "/assets/media/pos_empowerment_beneficiary.webp",
     videoSrc: "",
     location: "Community Economic Empowerment Hub"
   }

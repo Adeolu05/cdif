@@ -12,6 +12,7 @@ import ProgrammeList from '../components/ProgrammeList';
 import MegaIctFeature from '../components/MegaIctFeature';
 import RegistrationFacts from '../components/RegistrationFacts';
 import usePageMeta from '../hooks/usePageMeta';
+import Photo from '../components/Photo';
 
 export default function HomePage({ 
   onOpenDonate, 
@@ -77,7 +78,7 @@ export default function HomePage({
 
             <div style={{ position: 'relative' }}>
               <div className="media-frame hero-img-container">
-                <img 
+                <Photo 
                   src={fieldMedia.communitySession.banner} 
                   alt="CDIF community session under the organisation banner" 
                   fetchPriority="high"
@@ -122,7 +123,7 @@ export default function HomePage({
             
             <div className="media-accent home-why-image" style={{ order: 2 }}>
               <div className="media-frame ratio-1-1">
-                <img 
+                <Photo 
                   src={fieldMedia.photos[2].src} 
                   alt={fieldMedia.photos[2].alt} 
                   loading="lazy"
@@ -204,9 +205,10 @@ export default function HomePage({
             </div>
 
             <div className="media-frame ratio-3-4 home-story-image">
-              <img 
+              <Photo 
                 src={featuredStory.image} 
                 alt={`${featuredStory.caregiverName}, ${featuredStory.role}`} 
+                sizes="(min-width: 992px) 460px, 100vw"
                 loading="lazy"
                 decoding="async"
               />

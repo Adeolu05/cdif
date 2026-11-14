@@ -1,3 +1,5 @@
+import { copyFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { coreProgrammes } from './src/data/cdifData.js'
@@ -35,12 +37,20 @@ function siteMeta() {
         source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
       })
     },
+    /* Vercel serves 404.html with a 404 status for paths no rewrite matches; the app then renders NotFoundPage. */
+    writeBundle(options) {
+      copyFileSync(join(options.dir, 'index.html'), join(options.dir, '404.html'))
+    },
   }
 }
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), siteMeta()],
+  build: {
+    /* Hashed JS/CSS live apart from public/assets/media so vercel.json can cache them forever */
+    assetsDir: 'static',
+  },
   server: {
     open: true,
   },
