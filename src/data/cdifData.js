@@ -3,7 +3,7 @@ export const orgDetails = {
   shortName: "CDIF",
   formerlyKnownAs: "Family Focus and Leadership Initiatives",
   motto: "Restoring Values to Families",
-  tagline: "Empowering Families. Nurturing Children. Building Resilient Communities.",
+  tagline: "Strengthening Families. Nurturing Children. Building Resilient Communities.",
   registration: {
     number: "8601968",
     tin: "33347166-0001",
@@ -34,32 +34,28 @@ export const orgDetails = {
 
 export const impactMetrics = [
   {
-    id: "families",
-    count: 1250,
-    suffix: "+",
-    label: "Families Strengthened",
-    description: "Vulnerable households moved from economic instability towards self-reliance."
-  },
-  {
-    id: "children",
-    count: 3400,
-    suffix: "+",
-    label: "Children Kept in School",
-    description: "Children nourished, equipped with educational kits, and protected from dropouts."
-  },
-  {
-    id: "caregivers",
-    count: 480,
-    suffix: "+",
-    label: "Caregivers Economically Independent",
-    description: "Equipped with POS terminals, sewing machines, and micro-loan livelihood tools."
-  },
-  {
     id: "youth",
-    count: 9,
-    suffix: "",
-    label: "Teenagers Sponsored This Holiday Cycle",
-    description: "Adolescents currently sponsored for ICT and vocational holiday training."
+    value: "9",
+    label: "Teenagers Sponsored",
+    description: "Adolescents sponsored for ICT and hairdressing training during the long school holidays."
+  },
+  {
+    id: "programmes",
+    value: "3",
+    label: "Core Programmes",
+    description: "Food and educational support, caregiver economic empowerment, and youth skills development."
+  },
+  {
+    id: "drives",
+    value: "Quarterly",
+    label: "Food & Education Drives",
+    description: "Food assistance and school support delivered to vulnerable families every quarter."
+  },
+  {
+    id: "registered",
+    value: "2025",
+    label: "Registered with CAC",
+    description: "Incorporated as a community-based NGO (CAC/IT/8601968) on 4th July, 2025."
   }
 ];
 
@@ -69,7 +65,6 @@ export const coreProgrammes = [
     title: "Food and Educational Support",
     subtitle: "Quarterly Food Assistance & School Readiness Kits",
     category: "Child & Family Care",
-    badge: "Quarterly Drive",
     image: "/assets/media/photo_6_2026-08-10_14-01-14.jpg",
     overview: "Every quarter, CDIF provides food assistance and educational support to vulnerable families within the community. This intervention helps reduce the burden on caregivers while ensuring that children remain healthy, nourished, and able to continue their education.",
     highlights: [
@@ -85,7 +80,6 @@ export const coreProgrammes = [
     title: "Caregiver Economic Empowerment",
     subtitle: "Soft Loans & Income-Generating Business Tools",
     category: "Livelihood & Resilience",
-    badge: "Sustainable Impact",
     image: "/assets/media/photo_4_2026-08-10_14-01-14.jpg",
     overview: "Recognising the fact that economically empowered caregivers are better able to care for their families, CDIF provides soft loans and livelihood support to help families establish or expand small businesses. We also provide income-generating equipment such as sewing machines, POS machines, and other essential tools that enable caregivers to earn sustainable incomes.",
     highlights: [
@@ -101,7 +95,6 @@ export const coreProgrammes = [
     title: "Youth Skills Development",
     subtitle: "Vocational & Digital ICT Training for Adolescents",
     category: "Youth Empowerment",
-    badge: "Future Ready",
     image: "/assets/media/photo_5_2026-08-10_14-01-14.jpg",
     overview: "To keep young people meaningfully engaged and equip them with practical skills for the future, CDIF supports adolescents in vocational and technology training. Currently, the organisation is sponsoring nine teenagers to participate in ICT and hairdressing training during the long school holidays, helping them acquire valuable skills that enhance their future employability and entrepreneurship.",
     highlights: [
@@ -116,10 +109,10 @@ export const coreProgrammes = [
 
 export const megaIctIslandData = {
   hashtag: "#MEGA ICT ISLAND",
-  title: "DAY 1 ICT TRAINING SECTION",
+  title: "Day 1 ICT Training Session",
   subtitle: "Sponsored by CAPACITY DEVELOPMENT INITIATIVE FOR FAMILIES",
   videoSrc: "/assets/media/mega_ict_island_day1.mp4",
-  posterImage: "/assets/media/cdif_brand_poster.jpeg",
+  posterImage: "/assets/media/mega_ict_day1_poster.jpg",
   description: "Live footage from Day 1 of the intensive ICT & Digital Empowerment Bootcamp. Teenagers and youth from vulnerable households are equipped with essential computer skills, web literacy, graphic design fundamentals, and digital tools for future employability.",
   stats: [
     { label: "Holiday Trainees Sponsored", value: "9 Teenagers" },
@@ -136,8 +129,6 @@ export const megaIctIslandData = {
 };
 
 export const fieldMedia = {
-  brandPoster: "/assets/media/cdif_brand_poster.jpeg",
-  featuredIctVideo: "/assets/media/mega_ict_island_day1.mp4",
   certificate: "",
   communitySession: {
     facilitator: "/assets/media/community_session_facilitator.jpg",
@@ -151,20 +142,7 @@ export const fieldMedia = {
     { src: "/assets/media/photo_3_2026-08-10_14-01-14.jpg", alt: "Beneficiaries receiving assistance packages", caption: "Empowering Vulnerable Households" },
     { src: "/assets/media/photo_4_2026-08-10_14-01-14.jpg", alt: "Caregiver receiving sewing machine grant", caption: "Caregiver Economic Empowerment" },
     { src: "/assets/media/photo_5_2026-08-10_14-01-14.jpg", alt: "Sponsored teenagers at training session", caption: "Youth Skills Development: ICT & Hairdressing" },
-    { src: "/assets/media/photo_6_2026-08-10_14-01-14.jpg", alt: "Beneficiary with CDIF official banner", caption: "Quarterly Food and Educational Support" },
-    { src: "/assets/media/photo_7_2026-08-10_14-01-14.jpg", alt: "Community outreach and food distribution", caption: "Building Stronger Communities" },
-    { src: "/assets/media/community_session_banner.jpg", alt: "CDIF community session under the organisation banner", caption: "Community Capacity Session" },
-    { src: "/assets/media/community_session_audience.jpg", alt: "Residents seated at a CDIF community meeting", caption: "Community Meeting Audience" },
-    { src: "/assets/media/community_session_facilitator.jpg", alt: "Facilitator addressing families at a CDIF outreach", caption: "Community Session Facilitation" }
-  ],
-  videos: [
-    { src: "/assets/media/community_session.mp4", title: "Community Capacity Session" },
-    { src: "/assets/media/mega_ict_island_day1.mp4", title: "DAY 1 ICT TRAINING SECTION (#MEGA ICT ISLAND)" },
-    { src: "/assets/media/video_2026-08-10_14-01-14.mp4", title: "Field Distribution 1" },
-    { src: "/assets/media/video_2026-08-10_14-01-14 (2).mp4", title: "Community Action 2" },
-    { src: "/assets/media/video_2026-08-10_14-01-14 (3).mp4", title: "Beneficiary Testimony 3" },
-    { src: "/assets/media/video_2026-08-10_14-01-14 (4).mp4", title: "Youth Training 4" },
-    { src: "/assets/media/video_2026-08-10_14-01-14 (5).mp4", title: "Field Highlight 5" }
+    { src: "/assets/media/photo_6_2026-08-10_14-01-14.jpg", alt: "Beneficiary with CDIF official banner", caption: "Quarterly Food and Educational Support" }
   ]
 };
 
@@ -174,22 +152,11 @@ export const successStories = [
     caregiverName: "Beneficiary Caregiver",
     role: "Mother & CDIF POS Business Grantee",
     programme: "Caregiver Economic Empowerment",
+    excerpt: "Today, I pay school fees on time. I feed my children. I sleep peacefully.",
     quote: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
-    fullStory: "Before CDIF stepped in, I struggled every week to pay my children's school fees. I was always borrowing, always behind. Then CDIF gave me a POS business terminal and financial coaching. Today, I pay school fees on time. I feed my children. I sleep peacefully. CDIF didn’t just give me money. They gave me a business and belief in myself.",
     image: "/assets/media/pos_empowerment_beneficiary.jpeg",
     videoSrc: "",
     location: "Community Economic Empowerment Hub"
-  },
-  {
-    id: "story-emmanuel",
-    caregiverName: "Emmanuel Okafor",
-    role: "17-year-old ICT Bootcamp Graduate",
-    programme: "Youth Skills Development",
-    quote: "The holiday ICT training opened a whole new world for me. I learned computer basics, digital design, and coding fundamentals. Today I mentor younger students and earn income designing graphics for local businesses.",
-    fullStory: "Emmanuel was at risk of dropping out during long school holidays. CDIF sponsored his enrollment in the intensive 8-week Youth ICT Bootcamp. Demonstrating exceptional aptitude in digital media, Emmanuel received a sponsored refurbished laptop upon graduation and now assists CDIF's community tech workshop.",
-    image: "/assets/media/photo_5_2026-08-10_14-01-14.jpg",
-    videoSrc: "/assets/media/mega_ict_island_day1.mp4",
-    location: "Youth ICT Training"
   }
 ];
 
@@ -198,40 +165,20 @@ export const transparencyReports = [
     year: "2025",
     title: "Annual Impact & Financial Audit Report 2025",
     size: "",
-    href: "",
-    allocation: { programmes: 84, administration: 11, fundraising: 5 }
+    href: ""
   },
   {
     year: "2024",
     title: "Quarterly Field Evaluation & Beneficiary Outcomes 2024",
     size: "",
-    href: "",
-    allocation: { programmes: 82, administration: 12, fundraising: 6 }
-  }
-];
-
-export const leadershipTeam = [
-  {
-    name: "Dr. Florence N. Abiola",
-    title: "Executive Director & Founder",
-    bio: "Over 18 years experience in community development, child protection policy, and family welfare initiatives across West Africa."
-  },
-  {
-    name: "Adebayo Ogundipe",
-    title: "Head of Economic Empowerment",
-    bio: "Micro-finance specialist dedicated to designing non-predatory loan models and enterprise equipment grants for vulnerable caregivers."
-  },
-  {
-    name: "Chidinma Eze",
-    title: "Youth Skills & ICT Lead",
-    bio: "Software engineer and educator passionate about bridging the digital divide for underprivileged adolescents."
+    href: ""
   }
 ];
 
 export const faqs = [
   {
     question: "Is CDIF a registered non-governmental organization?",
-    answer: "Yes. CDIF is a fully registered, audited, community-based non-governmental organisation (NGO) operating under strict governance, compliance, and child safeguarding standards."
+    answer: "Yes. CDIF is registered with the Corporate Affairs Commission of Nigeria (CAC/IT/8601968, 4th July, 2025) as a community-based non-governmental organisation, overseen by a board of trustees."
   },
   {
     question: "How does CDIF select families for support?",
@@ -243,6 +190,6 @@ export const faqs = [
   },
   {
     question: "Can corporate organizations partner with CDIF for CSR?",
-    answer: "Absolutely. We collaborate with corporate organizations, faith institutions, and international development agencies to co-design sustainable CSR initiatives with verifiable community impact tracking."
+    answer: "Yes. We welcome corporate organisations, faith institutions, and development agencies who want to co-design community initiatives with us."
   }
 ];

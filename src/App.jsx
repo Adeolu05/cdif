@@ -52,6 +52,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <a href="#main" className="skip-link">Skip to content</a>
         <Header 
           onOpenDonate={() => setDonateOpen(true)}
           onOpenVolunteer={() => setVolunteerOpen(true)}
@@ -59,7 +60,7 @@ export default function App() {
           onOpenSearch={() => setSearchOpen(true)}
         />
 
-        <main style={{ flex: 1 }}>
+        <main id="main" tabIndex={-1} style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={
               <HomePage 

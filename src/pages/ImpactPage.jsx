@@ -1,104 +1,64 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { impactMetrics, successStories, fieldMedia } from '../data/cdifData';
+import { impactMetrics, successStories } from '../data/cdifData';
+import PageHero from '../components/PageHero';
+import usePageMeta from '../hooks/usePageMeta';
 
 export default function ImpactPage({ onOpenStoryModal }) {
-  return (
-    <div style={{ backgroundColor: 'var(--cdif-bg-paper)' }}>
-      
-      {/* Page Hero */}
-      <section style={{
-        paddingTop: '6rem',
-        paddingBottom: '4rem',
-        backgroundColor: 'var(--cdif-bg-paper)'
-      }}>
-        <div className="container">
-          <div style={{ maxWidth: '900px' }}>
-            <div className="eyebrow eyebrow-gold">Field Impact & Evidence</div>
-            <h1 className="display-1" style={{ marginBottom: '2rem' }}>
-              Measuring What Matters: <br />
-              <span style={{ color: 'var(--cdif-primary)' }}>Human Outcomes.</span>
-            </h1>
-            <p className="body-editorial-large" style={{ color: 'var(--cdif-text-muted)' }}>
-              Behind every statistic is a caregiver equipped to provide, and a child empowered to learn. Holiday sponsorship counts are current. Broader totals are programme estimates pending a published audit.
-            </p>
-          </div>
-        </div>
-      </section>
+  usePageMeta('Field Impact & Stories', 'What CDIF delivers for caregivers and children, and the voices of the families we support.');
 
-      {/* Editorial Metrics Presentation (Non-Dashboard) */}
-      <section className="editorial-section" style={{ backgroundColor: 'var(--cdif-bg-midnight)', color: '#FFFFFF' }}>
+  return (
+    <div>
+      <PageHero
+        eyebrow="Field Impact & Evidence"
+        title={<>Measuring What Matters: <span style={{ color: 'var(--cdif-primary)' }}>Human Outcomes.</span></>}
+        intro="Behind every figure is a caregiver equipped to provide, and a child empowered to learn. Broader outcome totals will be published once they have been independently audited."
+      />
+
+      <section className="editorial-section section-dark">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '4rem'
-          }} className="impact-grid">
-            
+          <div className="impact-grid">
             {impactMetrics.map((metric) => (
-              <div key={metric.id} style={{
-                borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-                paddingTop: '2rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.2rem', color: 'var(--cdif-accent-gold)' }}>
-                  <span style={{ fontSize: '4.5rem', fontWeight: 800, lineHeight: 1 }}>{metric.count.toLocaleString()}</span>
-                  <span style={{ fontSize: '2.5rem', fontWeight: 800 }}>{metric.suffix}</span>
-                </div>
-                <h3 className="display-3" style={{ color: '#FFFFFF', marginTop: '1rem', marginBottom: '1rem' }}>
+              <div key={metric.id} className="card-dark reveal" style={{ borderTop: '3px solid var(--cdif-accent-gold)' }}>
+                <div className="impact-value">{metric.value}</div>
+                <h2 className="display-3" style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
                   {metric.label}
-                </h3>
-                <p className="body-editorial" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+                </h2>
+                <p className="body-editorial">
                   {metric.description}
                 </p>
               </div>
             ))}
-
           </div>
         </div>
       </section>
 
-      {/* Documentary Stories */}
       <section className="editorial-section">
         <div className="container">
-          <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
-            <div className="eyebrow">The Living Record</div>
-            <h2 className="display-1">Voices of Resilience</h2>
+          <div className="section-intro-centered">
+            <div className="eyebrow eyebrow-accent">The Living Record</div>
+            <h2 className="display-2">Voices of Resilience</h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
+          <div className="editorial-rows">
             {successStories.map((story, idx) => {
-              const isEven = idx % 2 === 0;
-              const storyImage = story.image || (isEven ? fieldMedia.photos[0].src : fieldMedia.photos[1].src);
+              const imageFirst = idx % 2 === 0;
 
               return (
-                <div key={story.id} style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '5rem',
-                  alignItems: 'center'
-                }} className="editorial-two-col">
-                  
-                  <div style={{ order: isEven ? 1 : 2, position: 'relative' }}>
-                    <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                      <img src={storyImage} alt={story.caregiverName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
+                <article key={story.id} className="editorial-two-col reveal">
+                  <div className="media-frame ratio-3-4 story-image" style={{ order: imageFirst ? 1 : 2 }}>
+                    <img src={story.image} alt={`${story.caregiverName}, ${story.role}`} loading="lazy" decoding="async" />
                   </div>
 
-                  <div style={{ order: isEven ? 2 : 1 }}>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--cdif-primary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>
-                      {story.location}
-                    </div>
+                  <div style={{ order: imageFirst ? 2 : 1 }}>
+                    <div className="eyebrow">{story.location}</div>
                     
-                    <div className="pull-quote" style={{ fontSize: '1.6rem', marginBottom: '2.5rem' }}>
+                    <blockquote className="pull-quote" style={{ marginBottom: '2rem' }}>
                       "{story.quote}"
-                    </div>
+                    </blockquote>
 
-                    <p className="body-editorial" style={{ color: 'var(--cdif-text-body)', marginBottom: '2.5rem' }}>
-                      {story.fullStory}
-                    </p>
-
-                    <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--cdif-hairline-strong)' }}>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--cdif-text-heading)' }}>
+                    <div style={{ paddingTop: '1.5rem', borderTop: '1px solid var(--cdif-hairline-strong)' }}>
+                      <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--cdif-text-heading)' }}>
                         {story.caregiverName}
                       </div>
                       <div style={{ fontSize: '0.95rem', color: 'var(--cdif-primary)', fontWeight: 600, marginTop: '0.2rem' }}>
@@ -107,37 +67,40 @@ export default function ImpactPage({ onOpenStoryModal }) {
                     </div>
 
                     {story.videoSrc && (
-                      <button 
-                        type="button"
-                        onClick={() => onOpenStoryModal(story)}
-                        style={{ 
-                          marginTop: '2.5rem', background: 'none', border: 'none', borderBottom: '2px solid var(--cdif-text-heading)', 
-                          paddingBottom: '0.3rem', color: 'var(--cdif-text-heading)', fontWeight: 700, 
-                          fontSize: '1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
-                        }}
-                      >
-                        Watch field video <ArrowUpRight size={16} />
+                      <button type="button" onClick={() => onOpenStoryModal(story)} className="text-link text-link-dark" style={{ marginTop: '2rem' }}>
+                        Watch field video <ArrowUpRight size={16} aria-hidden="true" />
                       </button>
                     )}
                   </div>
-
-                </div>
+                </article>
               );
             })}
           </div>
-
         </div>
       </section>
 
       <style>{`
+        .impact-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+        .impact-value {
+          font-family: var(--font-heading);
+          font-size: clamp(2.75rem, 4vw + 1rem, 4rem);
+          font-weight: 800;
+          line-height: 1;
+          letter-spacing: -0.03em;
+          color: var(--cdif-accent-gold);
+        }
+        .story-image {
+          max-width: 480px;
+          justify-self: center;
+        }
         @media (min-width: 768px) {
           .impact-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-        @media (min-width: 992px) {
-          .editorial-two-col {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
           }
         }
       `}</style>
