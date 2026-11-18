@@ -22,9 +22,9 @@ export const orgDetails = {
     address: "",
     phone: "",
     whatsapp: "",
-    email: "info@cdif.org",
-    partnershipsEmail: "partnerships@cdif.org",
-    volunteerEmail: "volunteers@cdif.org",
+    email: "info@cdifnigeria.org",
+    partnershipsEmail: "info@cdifnigeria.org",
+    volunteerEmail: "info@cdifnigeria.org",
   },
   bankDetails: {
     verified: false,
