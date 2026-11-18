@@ -169,12 +169,6 @@ export const transparencyReports = [
     title: "Annual Impact & Financial Audit Report 2025",
     size: "",
     href: ""
-  },
-  {
-    year: "2024",
-    title: "Quarterly Field Evaluation & Beneficiary Outcomes 2024",
-    size: "",
-    href: ""
   }
 ];
 
