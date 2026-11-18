@@ -16,7 +16,6 @@ import Photo from '../components/Photo';
 
 export default function HomePage({ 
   onOpenDonate, 
-  onOpenVolunteer, 
   onOpenPartner, 
   onOpenVideoModal, 
   onOpenCertificate
@@ -229,7 +228,7 @@ export default function HomePage({
               Registered, Governed, Accountable
             </h2>
             <p className="body-editorial-large" style={{ color: 'var(--cdif-text-muted)' }}>
-              CDIF is a registered non-governmental organisation, overseen by a board of trustees and committed to financial transparency and child safeguarding.
+              CDIF is a registered non-governmental organisation, overseen by a board of trustees and committed to financial transparency and <Link to="/safeguarding" style={{ color: 'var(--cdif-primary)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>child safeguarding</Link>.
             </p>
           </div>
 
@@ -274,9 +273,6 @@ export default function HomePage({
             </button>
             <button type="button" onClick={onOpenPartner} className="btn btn-editorial-outline-white btn-lg">
               Partner With Us
-            </button>
-            <button type="button" onClick={onOpenVolunteer} className="btn btn-editorial-outline-white btn-lg">
-              Volunteer
             </button>
           </div>
 

@@ -8,7 +8,6 @@ import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 
 import { 
-  VolunteerModal, 
   PartnerModal, 
   DonateModal, 
   VideoModal, 
@@ -26,10 +25,10 @@ const TransparencyPage = lazy(() => import('./pages/TransparencyPage'));
 const GetInvolvedPage = lazy(() => import('./pages/GetInvolvedPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const SafeguardingPage = lazy(() => import('./pages/SafeguardingPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export default function App() {
-  const [volunteerOpen, setVolunteerOpen] = useState(false);
   const [partnerOpen, setPartnerOpen] = useState(false);
   const [donateOpen, setDonateOpen] = useState(false);
   const [videoState, setVideoState] = useState({ open: false, src: '', title: '' });
@@ -56,7 +55,6 @@ export default function App() {
         <a href="#main" className="skip-link">Skip to content</a>
         <Header 
           onOpenDonate={() => setDonateOpen(true)}
-          onOpenVolunteer={() => setVolunteerOpen(true)}
           onOpenPartner={() => setPartnerOpen(true)}
           onOpenSearch={() => setSearchOpen(true)}
         />
@@ -67,7 +65,6 @@ export default function App() {
               <Route path="/" element={
                 <HomePage 
                   onOpenDonate={() => setDonateOpen(true)}
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
                   onOpenPartner={() => setPartnerOpen(true)}
                   onOpenVideoModal={openVideoModal}
                   onOpenCertificate={fieldMedia.certificate ? () => setCertOpen(true) : undefined}
@@ -79,7 +76,6 @@ export default function App() {
               <Route path="/mega-ict-island" element={
                 <MegaIctIslandPage 
                   onOpenVideoModal={openVideoModal}
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
                   onOpenPartner={() => setPartnerOpen(true)}
                   onOpenDonate={() => setDonateOpen(true)}
                 />
@@ -90,7 +86,6 @@ export default function App() {
               } />
               <Route path="/get-involved" element={
                 <GetInvolvedPage 
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
                   onOpenPartner={() => setPartnerOpen(true)}
                   onOpenDonate={() => setDonateOpen(true)}
                 />
@@ -98,10 +93,10 @@ export default function App() {
               <Route path="/contact" element={
                 <ContactPage 
                   onOpenPartner={() => setPartnerOpen(true)}
-                  onOpenVolunteer={() => setVolunteerOpen(true)}
                 />
               } />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/safeguarding" element={<SafeguardingPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
@@ -109,7 +104,6 @@ export default function App() {
 
         <Footer />
 
-        <VolunteerModal isOpen={volunteerOpen} onClose={() => setVolunteerOpen(false)} />
         <PartnerModal isOpen={partnerOpen} onClose={() => setPartnerOpen(false)} />
         <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
         <VideoModal 

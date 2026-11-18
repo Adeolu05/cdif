@@ -1,6 +1,6 @@
 import React, { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, Check, Search, Send, Building, Copy, Mail, Handshake } from 'lucide-react';
+import { X, Check, Search, Building, Copy, Handshake } from 'lucide-react';
 import { coreProgrammes, successStories, fieldMedia, orgDetails } from '../data/cdifData';
 import useDialog from '../hooks/useDialog';
 
@@ -93,64 +93,7 @@ function ModalBase({ isOpen, onClose, title, children }) {
   );
 }
 
-/* 1. Volunteer Application Modal */
-export function VolunteerModal({ isOpen, onClose }) {
-  return (
-    <ModalBase isOpen={isOpen} onClose={onClose} title="Apply to Volunteer with CDIF">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-        <p style={{ fontSize: '1rem', color: 'var(--cdif-text-body)', lineHeight: 1.6 }}>
-          We constantly need skilled professionals—educators, medical personnel, tech instructors, and logistics coordinators—to support our field operations.
-        </p>
-        
-        <div style={{
-          padding: '1.5rem',
-          backgroundColor: 'var(--cdif-bg-subtle)',
-          borderRadius: 'var(--radius-md)',
-          marginBottom: '1rem'
-        }}>
-          <h3 style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--cdif-primary)', marginBottom: '1rem' }}>
-            Current Open Roles
-          </h3>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: 0, margin: 0, fontSize: '0.95rem' }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="var(--cdif-primary)" /> ICT & Digital Literacy Mentors</li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="var(--cdif-primary)" /> Caregiver Business Coaches</li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="var(--cdif-primary)" /> Logistics & Field Support</li>
-          </ul>
-        </div>
-
-        <div style={{
-          padding: '1rem',
-          border: '1px solid var(--cdif-accent-gold)',
-          backgroundColor: 'rgba(245, 184, 0, 0.05)',
-          borderRadius: 'var(--radius-sm)',
-          fontSize: '0.9rem',
-          display: 'flex',
-          gap: '0.8rem',
-          alignItems: 'flex-start'
-        }}>
-          <div className="icon-container" style={{ color: 'var(--cdif-accent-gold-dark)' }}>
-            <Send size={18} />
-          </div>
-          <div>
-            <span style={{ fontWeight: 700, display: 'block', marginBottom: '0.2rem' }}>Application Process</span>
-            Our volunteer portal is currently undergoing upgrades. Please email your CV and brief statement of interest directly to our volunteer coordination desk.
-          </div>
-        </div>
-
-        <a 
-          href={`mailto:${orgDetails.contact.volunteerEmail || orgDetails.contact.email}?subject=Volunteer%20Application`}
-          className="btn btn-editorial-primary" 
-          style={{ width: '100%', marginTop: '1rem' }}
-        >
-          <Mail size={16} />
-          <span>Email Application</span>
-        </a>
-      </div>
-    </ModalBase>
-  );
-}
-
-/* 2. Corporate Partner Modal */
+/* Corporate Partner Modal */
 export function PartnerModal({ isOpen, onClose }) {
   return (
     <ModalBase isOpen={isOpen} onClose={onClose} title="Initiate Corporate Partnership">

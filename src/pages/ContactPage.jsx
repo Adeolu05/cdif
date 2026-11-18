@@ -5,13 +5,12 @@ import FAQSection from '../components/FAQSection';
 import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
 
-export default function ContactPage({ onOpenPartner, onOpenVolunteer }) {
+export default function ContactPage({ onOpenPartner }) {
   usePageMeta('Contact Us & FAQ', 'Reach the right CDIF desk by email, and find answers to common questions.');
 
   const desks = [
     ['General', orgDetails.contact.email],
-    ['Partnerships', orgDetails.contact.partnershipsEmail],
-    ['Volunteers', orgDetails.contact.volunteerEmail]
+    ['Partnerships', orgDetails.contact.partnershipsEmail]
   ];
 
   return (
@@ -45,18 +44,11 @@ export default function ContactPage({ onOpenPartner, onOpenVolunteer }) {
                   </div>
                 ))}
               </dl>
-              {(onOpenPartner || onOpenVolunteer) && (
+              {onOpenPartner && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', marginTop: '2rem' }}>
-                  {onOpenPartner && (
-                    <button type="button" onClick={onOpenPartner} className="btn btn-editorial-outline">
-                      Partner with us
-                    </button>
-                  )}
-                  {onOpenVolunteer && (
-                    <button type="button" onClick={onOpenVolunteer} className="btn btn-editorial-primary">
-                      Volunteer
-                    </button>
-                  )}
+                  <button type="button" onClick={onOpenPartner} className="btn btn-editorial-outline">
+                    Partner with us
+                  </button>
                 </div>
               )}
             </div>

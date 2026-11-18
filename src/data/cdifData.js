@@ -24,7 +24,6 @@ export const orgDetails = {
     whatsapp: "",
     email: "info@cdifnigeria.org",
     partnershipsEmail: "info@cdifnigeria.org",
-    volunteerEmail: "info@cdifnigeria.org",
   },
   bankDetails: {
     verified: false,

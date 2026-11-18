@@ -16,6 +16,7 @@ const sitemapPaths = [
   '/transparency',
   '/get-involved',
   '/contact',
+  '/safeguarding',
   '/privacy-policy',
 ]
 
