@@ -31,4 +31,4 @@ npm run preview  # serve the production build
 
 ## Absolute URLs
 
-Link previews and `sitemap.xml` need the site's domain. On Vercel it is read from `VERCEL_PROJECT_PRODUCTION_URL` automatically; elsewhere set `SITE_URL` (for example `SITE_URL=https://example.org npm run build`).
+The public address is `siteUrl` in `src/data/cdifData.js` (`https://cdifnigeria.org`). The build writes it into the canonical link, Open Graph tags, `robots.txt` and `sitemap.xml`. Override it for a one-off build with `SITE_URL` (for example `SITE_URL=https://example.org npm run build`).

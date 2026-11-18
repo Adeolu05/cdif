@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "cdif.vercel.app" }],
+      "destination": "https://cdifnigeria.org/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/:page(about|programmes|mega-ict-island|impact|transparency|get-involved|contact|privacy-policy)",
