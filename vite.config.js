@@ -2,10 +2,9 @@ import { copyFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { coreProgrammes } from './src/data/cdifData.js'
+import { coreProgrammes, siteUrl as canonicalSite } from './src/data/cdifData.js'
 
-const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL
-const siteUrl = (process.env.SITE_URL || (productionHost ? `https://${productionHost}` : '')).replace(/\/$/, '')
+const siteUrl = (process.env.SITE_URL || canonicalSite).replace(/\/$/, '')
 
 const sitemapPaths = [
   '/',
@@ -20,7 +19,7 @@ const sitemapPaths = [
   '/privacy-policy',
 ]
 
-/* Link previews and sitemaps need absolute URLs; set SITE_URL, or Vercel provides its production domain. */
+/* Link previews and sitemaps use the official domain, not the *.vercel.app host. */
 function siteMeta() {
   return {
     name: 'cdif-site-meta',

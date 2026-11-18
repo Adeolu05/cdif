@@ -1,3 +1,6 @@
+/* Official public address. https, no www, no trailing slash. */
+export const siteUrl = "https://cdifnigeria.org";
+
 export const orgDetails = {
   name: "Capacity Development Initiative for Families (CDIF)",
   shortName: "CDIF",

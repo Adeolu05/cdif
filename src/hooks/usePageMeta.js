@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { orgDetails } from '../data/cdifData';
+import { orgDetails, siteUrl } from '../data/cdifData';
 
 const DEFAULT_TITLE = `${orgDetails.name} | Strengthening Families, Nurturing Children`;
 
@@ -15,7 +15,7 @@ export default function usePageMeta(title, description) {
 
   useEffect(() => {
     const fullTitle = title ? `${title} | ${orgDetails.name}` : DEFAULT_TITLE;
-    const url = `${window.location.origin}${pathname}`;
+    const url = `${siteUrl}${pathname}`;
 
     document.title = fullTitle;
     setHeadAttribute('meta[name="description"]', 'content', description);
