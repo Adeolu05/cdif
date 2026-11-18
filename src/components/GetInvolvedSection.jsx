@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArrowRight, Handshake, Heart, UserPlus } from 'lucide-react';
+import { ArrowRight, Handshake, Heart } from 'lucide-react';
 
-export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOpenPartner }) {
+export default function GetInvolvedSection({ onOpenDonate, onOpenPartner }) {
   return (
     <section id="get-involved" className="editorial-section section-subtle">
       <div className="container">
@@ -14,17 +14,6 @@ export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOp
         </div>
         
         <div className="get-involved-grid">
-          <div className="card get-involved-card reveal">
-            <span className="icon-badge" style={{ width: '56px', height: '56px' }} aria-hidden="true">
-              <UserPlus size={26} />
-            </span>
-            <h3>Volunteer</h3>
-            <p style={{ color: 'var(--cdif-text-body)' }}>Join our field operatives and directly impact lives.</p>
-            <button type="button" onClick={onOpenVolunteer} className="btn btn-editorial-outline">
-              Apply Now <ArrowRight size={16} aria-hidden="true" />
-            </button>
-          </div>
-          
           <div className="card get-involved-card get-involved-featured reveal">
             <span className="icon-badge" style={{ width: '56px', height: '56px', backgroundColor: 'var(--cdif-accent-gold)', color: 'var(--cdif-bg-midnight)' }} aria-hidden="true">
               <Heart size={26} />
@@ -81,7 +70,7 @@ export default function GetInvolvedSection({ onOpenVolunteer, onOpenDonate, onOp
         }
         @media (min-width: 900px) {
           .get-involved-grid {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
           }
         }

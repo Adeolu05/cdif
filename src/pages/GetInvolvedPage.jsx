@@ -1,19 +1,19 @@
 import React from 'react';
-import { Heart, Handshake, Users } from 'lucide-react';
+import { Heart, Handshake } from 'lucide-react';
 import { fieldMedia } from '../data/cdifData';
 import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
 import Photo from '../components/Photo';
 
-export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpenDonate }) {
-  usePageMeta('Get Involved', 'Donate, partner, or volunteer with CDIF to help vulnerable families build self-sustaining futures.');
+export default function GetInvolvedPage({ onOpenPartner, onOpenDonate }) {
+  usePageMeta('Get Involved', 'Donate to or partner with CDIF to help vulnerable families build self-sustaining futures.');
 
   return (
     <div>
       <PageHero
         eyebrow="Get Involved"
         title={<>Your action changes <span style={{ color: 'var(--cdif-primary)' }}>a family's trajectory.</span></>}
-        intro="Strong communities are built through collective effort. Whether you give financially, offer your expertise, or partner as an organisation, you are helping to secure a child's future."
+        intro="Strong communities are built through collective effort. Whether you give financially or partner as an organisation, you are helping to secure a child's future."
       />
 
       <section className="editorial-section" style={{ paddingTop: '2rem' }}>
@@ -55,26 +55,6 @@ export default function GetInvolvedPage({ onOpenVolunteer, onOpenPartner, onOpen
               </div>
               <div className="media-frame ratio-4-3" style={{ order: 2 }}>
                 <Photo src={fieldMedia.photos[3].src} alt={fieldMedia.photos[3].alt} loading="lazy" decoding="async" />
-              </div>
-            </div>
-
-            <div className="hairline-divider"></div>
-
-            <div className="editorial-two-col reveal">
-              <div style={{ order: 2 }}>
-                <div className="icon-badge" style={{ marginBottom: '1.5rem' }}>
-                  <Users size={24} aria-hidden="true" />
-                </div>
-                <h2 className="display-2" style={{ marginBottom: '1.25rem' }}>Volunteer Expertise</h2>
-                <p className="body-editorial" style={{ marginBottom: '2rem' }}>
-                  We constantly need skilled professionals—educators, medical personnel, tech instructors, and logistics coordinators—to support our field operations. 
-                </p>
-                <button type="button" onClick={onOpenVolunteer} className="btn btn-editorial-outline btn-lg">
-                  Apply to Volunteer
-                </button>
-              </div>
-              <div className="media-frame ratio-4-3" style={{ order: 1 }}>
-                <Photo src={fieldMedia.communitySession.facilitator} alt="Facilitator addressing families at a CDIF outreach" loading="lazy" decoding="async" />
               </div>
             </div>
 

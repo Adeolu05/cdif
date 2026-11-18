@@ -15,7 +15,7 @@
   ],
   "rewrites": [
     {
-      "source": "/:page(about|programmes|mega-ict-island|impact|transparency|get-involved|contact|privacy-policy)",
+      "source": "/:page(about|programmes|mega-ict-island|impact|transparency|get-involved|contact|safeguarding|privacy-policy)",
       "destination": "/index.html"
     },
     {

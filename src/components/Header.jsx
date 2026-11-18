@@ -18,7 +18,7 @@ const navItems = [
 const navLinkClass = (featured) => ({ isActive }) =>
   ['nav-link', isActive && 'active', featured && 'mega-link'].filter(Boolean).join(' ');
 
-export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, onOpenSearch }) {
+export default function Header({ onOpenDonate, onOpenPartner, onOpenSearch }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [drawerTop, setDrawerTop] = useState(0);
@@ -233,14 +233,6 @@ export default function Header({ onOpenDonate, onOpenVolunteer, onOpenPartner, o
               style={{ width: '100%' }}
             >
               Partner With Us
-            </button>
-            <button 
-              type="button"
-              onClick={() => { closeMenu(); onOpenVolunteer(); }} 
-              className="btn btn-editorial-outline" 
-              style={{ width: '100%' }}
-            >
-              Apply to Volunteer
             </button>
           </div>
         </div>

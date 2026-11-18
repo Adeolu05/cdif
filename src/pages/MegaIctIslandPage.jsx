@@ -4,7 +4,7 @@ import { Sparkles, Play, CheckCircle } from 'lucide-react';
 import { megaIctIslandData } from '../data/cdifData';
 import usePageMeta from '../hooks/usePageMeta';
 
-export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, onOpenPartner, onOpenDonate }) {
+export default function MegaIctIslandPage({ onOpenVideoModal, onOpenPartner, onOpenDonate }) {
   usePageMeta('#MEGA ICT ISLAND', megaIctIslandData.description);
 
   return (
@@ -106,7 +106,6 @@ export default function MegaIctIslandPage({ onOpenVideoModal, onOpenVolunteer, o
       </section>
 
       <GetInvolvedSection 
-        onOpenVolunteer={onOpenVolunteer}
         onOpenPartner={onOpenPartner}
         onOpenDonate={onOpenDonate}
       />

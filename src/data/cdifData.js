@@ -22,9 +22,8 @@ export const orgDetails = {
     address: "",
     phone: "",
     whatsapp: "",
-    email: "info@cdif.org",
-    partnershipsEmail: "partnerships@cdif.org",
-    volunteerEmail: "volunteers@cdif.org",
+    email: "info@cdifnigeria.org",
+    partnershipsEmail: "info@cdifnigeria.org",
   },
   bankDetails: {
     verified: false,
@@ -167,12 +166,6 @@ export const transparencyReports = [
   {
     year: "2025",
     title: "Annual Impact & Financial Audit Report 2025",
-    size: "",
-    href: ""
-  },
-  {
-    year: "2024",
-    title: "Quarterly Field Evaluation & Beneficiary Outcomes 2024",
     size: "",
     href: ""
   }
