@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { orgDetails } from '../data/cdifData';
 import FAQSection from '../components/FAQSection';
 import PageHero from '../components/PageHero';
@@ -18,7 +18,7 @@ export default function ContactPage({ onOpenPartner }) {
       <PageHero
         eyebrow="Get In Touch"
         title={<>We're here to <span style={{ color: 'var(--cdif-primary)' }}>listen & collaborate.</span></>}
-        intro="Reach the right desk by email. Phone, WhatsApp, and a street address will appear here once CDIF verifies them."
+        intro="Write to us by email. Phone and WhatsApp will appear here once CDIF confirms them."
       />
 
       <section className="editorial-section section-surface">
@@ -28,6 +28,12 @@ export default function ContactPage({ onOpenPartner }) {
               <Mail size={24} />
             </span>
             <div style={{ minWidth: 0 }}>
+              {orgDetails.contact.address && (
+                <p style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', marginBottom: '1.5rem', color: 'var(--cdif-text-heading)', fontWeight: 600 }}>
+                  <MapPin size={18} aria-hidden="true" style={{ flexShrink: 0, marginTop: '2px', color: 'var(--cdif-primary)' }} />
+                  <span>{orgDetails.contact.address}</span>
+                </p>
+              )}
               <h2 style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '0.5rem' }}>Email Desks</h2>
               <p className="body-editorial" style={{ color: 'var(--cdif-text-muted)', marginBottom: '1.5rem' }}>
                 Write to the desk that matches your request.
