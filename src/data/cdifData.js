@@ -12,14 +12,18 @@ export const orgDetails = {
     tin: "33347166-0001",
     date: "4th July, 2025",
     body: "Corporate Affairs Commission (CAC), Federal Republic of Nigeria",
-    trustees: ["Oluwayomi Adeosun", "Adebisi Lawson", "Olayinka Lawson"],
+    trustees: [
+      { name: "Adebisi Lawson", role: "Chair" },
+      { name: "Oluwayomi Adeosun", role: "Secretary" },
+      { name: "Olayinka Lawson", role: "Trustee" }
+    ],
     fullText: "Registered Community-Based Non-Governmental Organization (CAC/IT/8601968)"
   },
   vision: "To strengthen families in order to build stronger communities where every child has the opportunity to reach their full potential.",
   mission: "To empower vulnerable families by building the capacity of caregivers through economic empowerment, education, social support, and skills development, enabling them to provide quality care and lasting opportunities for their children.",
   commitment: "Capacity Development Initiative for Families is committed to promoting family resilience, child well-being, and community development through sustainable interventions that restore hope, preserve dignity, and create pathways out of poverty. By investing in caregivers and children today, we are helping to build healthier families and stronger communities for generations to come.",
   contact: {
-    address: "",
+    address: "No 3, Moradeyo Street, Kuje Amuwo, Lagos State, Nigeria",
     phone: "",
     whatsapp: "",
     email: "info@cdifnigeria.org",

@@ -77,12 +77,15 @@ export default function TransparencyPage({ onOpenCertificate }) {
                 Board of Trustees
               </h3>
               <ul className="trustee-list">
-                {orgDetails.registration.trustees.map((name) => (
-                  <li key={name}>
+                {orgDetails.registration.trustees.map((trustee) => (
+                  <li key={trustee.name}>
                     <span className="trustee-initials" aria-hidden="true">
-                      {name.split(' ').map((part) => part[0]).join('')}
+                      {trustee.name.split(' ').map((part) => part[0]).join('')}
                     </span>
-                    {name}
+                    <span>
+                      {trustee.name}
+                      <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--cdif-text-muted)' }}>{trustee.role}</span>
+                    </span>
                   </li>
                 ))}
               </ul>
