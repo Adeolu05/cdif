@@ -104,7 +104,12 @@ export default function Footer() {
           color: 'rgba(255,255,255,0.65)'
         }}>
           <div>
-            © {new Date().getFullYear()} {orgDetails.name}. All rights reserved. Registered NGO CAC/IT/{orgDetails.registration.number}.
+            <div>
+              © {new Date().getFullYear()} {orgDetails.name}. All rights reserved. Registered NGO CAC/IT/{orgDetails.registration.number}.
+            </div>
+            <div style={{ marginTop: '0.35rem' }}>
+              Site by <a href="https://www.dpeluola.com" className="footer-policy-link" target="_blank" rel="noopener noreferrer">David Peluola</a>
+            </div>
           </div>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <Link to="/transparency" className="footer-policy-link">Transparency & Governance</Link>
